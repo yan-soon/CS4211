@@ -61,12 +61,14 @@ Team1Serve =
 
 
 // serving from 1, doubles only can go cross-court (into 12)
-De_Ply1Serve = pcase {                             
+De_Ply1Serve = pcase {            
+			20: ServeT_in{ball= 5} -> Ply3_ForeHandR                   
 			28: ServeWide_in{ball=12} -> Ply3_BackHandR 
 			0: ServeBody_in{ball=12} -> (Ply3_BackHandR [] Ply3_ForeHandR)
 			24: Serve_err{ball=13} -> De_Ply1Serve_2nd}; 
 
 De_Ply1Serve_2nd = pcase {                 //1st serve is out
+			3: ServeT_in{ball= 5} -> Ply3_ForeHandR 
 			13: ServeWide_in{ball =12} -> Ply3_BackHandR 
 			5: ServeBody_in{ball=12} -> (Ply3_BackHandR [] Ply3_ForeHandR)
 			3: Serve_err{ball=13} -> Fdoublefault{nscore++; if (nscore == 7) {won = team2} 
@@ -75,11 +77,13 @@ De_Ply1Serve_2nd = pcase {                 //1st serve is out
 
 // serving from 3, doubles only can go cross-court (into 10)
 Ad_Ply1Serve = pcase { 
+			21: ServeT_in{ball= 5} -> Ply3_BackHandR
 			16: ServeWide_in{ball =10} -> Ply3_ForeHandR
 			0: ServeBody_in{ball=10} -> (Ply3_BackHandR [] Ply3_ForeHandR)
 			29: Serve_err{ball=13} -> Ad_Ply1Serve_2nd}; 
 
 Ad_Ply1Serve_2nd = pcase {                 //1st serve is out
+			21: ServeT_in{ball= 5} -> Ply3_BackHandR 
 			7: ServeWide_in{ball =10} -> Ply3_ForeHandR
 			1: ServeBody_in{ball=10} -> (Ply3_BackHandR [] Ply3_ForeHandR)
 			0: Serve_err{ball=13} -> Fdoublefault{nscore++; if (nscore == 7) {won = team2} 
@@ -229,11 +233,13 @@ Team2Serve =
 
 // serving from 12 can only go cross-court (into 1)
 De_Ply3Serve = pcase {
+			24 : ServeT_in{ball= 2} -> Ply1_BackHandR
 			7 : ServeWide_in{ball =1} -> Ply1_ForeHandR
 			20: ServeBody_in{ball=1} -> (Ply1_ForeHandR [] Ply1_BackHandR)
 			26: Serve_err{ball=13} -> De_Ply3Serve_2nd}; 
 
 De_Ply3Serve_2nd = pcase {                 //1st serve is out
+			11 : ServeT_in{ball= 2} -> Ply1_BackHandR
 			7 : ServeWide_in{ball =1} -> Ply1_ForeHandR
 			6: ServeBody_in{ball=1} -> (Ply1_ForeHandR [] Ply1_BackHandR)
 			2 : Serve_err{ball=13} -> Ndoublefault{fscore++; if (fscore == 7) {won = team1} 
@@ -242,11 +248,13 @@ De_Ply3Serve_2nd = pcase {                 //1st serve is out
 
 // serving from 10 can only go cross court (into 3)   		 
 Ad_Ply3Serve = pcase {
+			9: ServeT_in{ball= 2} -> Ply1_ForeHandR
 			32 : ServeWide_in{ball =3} -> Ply1_BackHandR
 			18: ServeBody_in{ball=3} -> (Ply1_ForeHandR [] Ply1_BackHandR)
 			15: Serve_err{ball=13} -> Ad_Ply3Serve_2nd}; 
 
 Ad_Ply3Serve_2nd = pcase {                 //1st serve is out
+			1: ServeT_in{ball= 2} -> Ply1_ForeHandR
 			10 : ServeWide_in{ball =3} -> Ply1_BackHandR
 			3: ServeBody_in{ball=3} -> (Ply1_ForeHandR [] Ply1_BackHandR)
 			1: Serve_err{ball=13} -> Ndoublefault{fscore++; if (fscore == 7) {won = team1} 
