@@ -112,21 +112,61 @@ NextPt = Team1Serve [] Team2Serve [] ([won != na] GameOver -> Skip);
 
 // deuce stroke is when player 3 hit position is 12 or 9 (back or front)
 Ply3_de_stroke = pcase { // if already 
-      // back player receives stroke (player 1)
-			43: BH_Crosscourt { ball = 1;} -> Ply1_de_stroke
-			28: BH_Downline { ball = 3} -> Ply1_ad_stroke
-			41: BH_DownMid { ball = 2} -> Ply1_mid_stroke
-			7: FH_InsideIn {ball = 3} -> Ply1_ad_stroke
-			4: FH_InsideOut { ball = 1} -> Ply1_de_stroke
-			3: FH_DownMid { ball = 2} -> Ply1_mid_stroke
+      // back player receives stroke (player 1) (forehand, backhand, lob, volley)
+			43: BH_Crosscourt_Back_P1 { ball = 1;} -> Ply1_de_stroke
+			28: BH_Downline_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			41: BH_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			7: FH_InsideIn_Back_P1 {ball = 3} -> Ply1_ad_stroke
+			4: FH_InsideOut_Back_P1 { ball = 1} -> Ply1_de_stroke
+			3: FH_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			43: Lob_Crosscourt_Back_P1 { ball = 1;} -> Ply1_de_stroke
+			28: Lob_Downline_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			41: Lob_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			7: Volley_InsideIn_Back_P1 {ball = 3} -> Ply1_ad_stroke
+			4: Volley_InsideOut_Back_P1 { ball = 1} -> Ply1_de_stroke
+			3: Volley_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+	
+      // back player receives stroke (player 2) (forehand, backhand, lob, volley)
+			43: BH_Crosscourt_Back_P2 { ball = 1;} -> Ply2_de_stroke
+			28: BH_Downline_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			41: BH_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			7: FH_InsideIn_Back_P2 {ball = 3} -> Ply2_ad_stroke
+			4: FH_InsideOut_Back_P2 { ball = 1} -> Ply2_de_stroke
+			3: FH_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			43: Lob_Crosscourt_Back_P2 { ball = 1;} -> Ply2_de_stroke
+			28: Lob_Downline_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			41: Lob_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			7: Volley_InsideIn_Back_P2 {ball = 3} -> Ply2_ad_stroke
+			4: Volley_InsideOut_Back_P2 { ball = 1} -> Ply2_de_stroke
+			3: Volley_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
 
-      // front player receives stroke (player 2)
-			43: BH_Crosscourt { ball = 4;} -> Ply2_de_stroke
-			28: BH_Downline { ball = 6} -> Ply2_ad_stroke
-			41: BH_DownMid { ball = 5} -> Ply2_mid_stroke
-			7: FH_InsideIn {ball = 6} -> Ply2_ad_stroke
-			4: FH_InsideOut { ball = 4} -> Ply2_de_stroke
-			3: FH_DownMid { ball = 5} -> Ply2_mid_stroke
+      // front player receives stroke (player 2) (forehand, backhand, dropshot, volley)
+			43: BH_Crosscourt_Front_P2 { ball = 4;} -> Ply2_de_stroke
+			28: BH_Downline_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			41: BH_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			7: FH_InsideIn_Front_P2 {ball = 6} -> Ply2_ad_stroke
+			4: FH_InsideOut_Front_P2 { ball = 4} -> Ply2_de_stroke
+			3: FH_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			43: DS_Crosscourt_Front_P2 { ball = 4;} -> Ply2_de_stroke
+			28: DS_Downline_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			41: DS_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			7: Volley_InsideIn_Front_P2 {ball = 6} -> Ply2_ad_stroke
+			4: Volley_InsideOut_Front_P2 { ball = 4} -> Ply2_de_stroke
+			3: Volley_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+
+      // front player receives stroke (player 1) (forehand, backhand, dropshot, volley)
+			43: BH_Crosscourt_Front_P1 { ball = 4;} -> Ply1_de_stroke
+			28: BH_Downline_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			41: BH_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			7: FH_InsideIn_Front_P1 {ball = 6} -> Ply1_ad_stroke
+			4: FH_InsideOut_Front_P1 { ball = 4} -> Ply1_de_stroke
+			3: FH_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			43: DS_Crosscourt_Front_P1 { ball = 4;} -> Ply1_de_stroke
+			28: DS_Downline_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			41: DS_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			7: Volley_InsideIn_Front_P1 {ball = 6} -> Ply1_ad_stroke
+			4: Volley_InsideOut_Front_P1 { ball = 4} -> Ply1_de_stroke
+			3: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 
 			34: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt      		                                                            
@@ -134,21 +174,61 @@ Ply3_de_stroke = pcase { // if already
 
 // mid stroke is when player 3 hit position is 11 or 8 (back or front)
 Ply3_mid_stroke = noMove -> pcase{
-      // back player receives stroke (player 1)
-			20: FH_InsideOut{ball = 1} -> Ply1_de_stroke
-			58: FH_Crosscourt { ball = 3} -> Ply1_ad_stroke
-			20: FH_DownMid { ball = 2 } -> Ply1_mid_stroke
-			3: BH_InsideOut { ball = 3} -> Ply1_ad_stroke
-			17: BH_DownMid { ball = 2} -> Ply1_mid_stroke
-			29: BH_Crosscourt { ball = 1} -> Ply1_de_stroke
+      // back player receives stroke (player 1) (forehand, backhand, lob, volley)
+			20: FH_InsideOut_Back_P1 {ball = 1} -> Ply1_de_stroke
+			58: FH_Crosscourt_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			20: FH_DownMid_Back_P1 { ball = 2 } -> Ply1_mid_stroke
+			3: BH_InsideOut_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			17: BH_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			29: BH_Crosscourt_Back_P1 { ball = 1} -> Ply1_de_stroke
+			20: Lob_InsideOut_Back_P1 {ball = 1} -> Ply1_de_stroke
+			58: Lob_Crosscourt_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			20: Lob_DownMid_Back_P1 { ball = 2 } -> Ply1_mid_stroke
+			3: Volley_InsideOut_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			17: Volley_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			29: Volley_Crosscourt_Back_P1 { ball = 1} -> Ply1_de_stroke
+		
+      // back player receives stroke (player 2) (forehand, backhand, lob, volley)
+			20: FH_InsideOut_Back_P2 {ball = 1} -> Ply2_de_stroke
+			58: FH_Crosscourt_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			20: FH_DownMid_Back_P2 { ball = 2 } -> Ply2_mid_stroke
+			3: BH_InsideOut_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			17: BH_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			29: BH_Crosscourt_Back_P2 { ball = 1} -> Ply2_de_stroke
+			20: Lob_InsideOut_Back_P2 {ball = 1} -> Ply2_de_stroke
+			58: Lob_Crosscourt_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			20: Lob_DownMid_Back_P2 { ball = 2 } -> Ply2_mid_stroke
+			3: Volley_InsideOut_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			17: Volley_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			29: Volley_Crosscourt_Back_P2 { ball = 1} -> Ply2_de_stroke
 
-      // front player receives stroke (player 2)
-			20: FH_InsideOut{ball = 4} -> Ply2_de_stroke
-			58: FH_Crosscourt { ball = 6} -> Ply2_ad_stroke
-			20: FH_DownMid { ball = 5 } -> Ply2_mid_stroke
-			3: BH_InsideOut { ball = 6} -> Ply2_ad_stroke
-			17: BH_DownMid { ball = 5} -> Ply2_mid_stroke
-			29: BH_Crosscourt { ball = 4} -> Ply2_de_stroke
+      // front player receives stroke (player 2) (forehand, backhand, dropshot, volley)
+			20: FH_InsideOut_Front_P2 {ball = 4} -> Ply2_de_stroke
+			58: FH_Crosscourt_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			20: FH_DownMid_Front_P2 { ball = 5 } -> Ply2_mid_stroke
+			3: BH_InsideOut_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			17: BH_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			29: BH_Crosscourt_Front_P2 { ball = 4} -> Ply2_de_stroke
+			20: DS_InsideOut_Front_P2 {ball = 4} -> Ply2_de_stroke
+			58: DS_Crosscourt_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			20: DS_DownMid_Front_P2 { ball = 5 } -> Ply2_mid_stroke
+			3: Volley_InsideOut_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			17: Volley_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			29: Volley_Crosscourt_Front_P2 { ball = 4} -> Ply2_de_stroke
+
+      // front player receives stroke (player 1) (forehand, backhand, dropshot, volley)
+			20: FH_InsideOut_Front_P1 {ball = 4} -> Ply1_de_stroke
+			58: FH_Crosscourt_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			20: FH_DownMid_Front_P1 { ball = 5 } -> Ply1_mid_stroke
+			3: BH_InsideOut_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			17: BH_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			29: BH_Crosscourt_Front_P1 { ball = 4} -> Ply1_de_stroke
+			20: DS_InsideOut_Front_P1 {ball = 4} -> Ply1_de_stroke
+			58: DS_Crosscourt_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			20: DS_DownMid_Front_P1 { ball = 5 } -> Ply1_mid_stroke
+			3: Volley_InsideOut_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			17: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			29: Volley_Crosscourt_Front_P1 { ball = 4} -> Ply1_de_stroke
 
 			15: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt   
@@ -157,21 +237,61 @@ Ply3_mid_stroke = noMove -> pcase{
 
 // ad stroke is when player 3 hit position is 10 or 7 (back or front)
 Ply3_ad_stroke = pcase{
-      // back player receives stroke (player 1)
-			60: FH_Crosscourt { ball = 3} -> Ply1_ad_stroke
-			24: FH_Downline { ball = 1} -> Ply1_de_stroke
-			10: FH_DownMid { ball = 2 } -> Ply1_mid_stroke
-			0: BH_InsideOut { ball = 3} -> Ply1_ad_stroke
-			0: BH_InsideIn { ball = 1} -> Ply1_de_stroke
-			0: BH_DownMid { ball = 2} -> Ply1_mid_stroke
+      // back player receives stroke (player 1) (forehand, backhand, lob, volley)
+			60: FH_Crosscourt_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			24: FH_Downline_Back_P1 { ball = 1} -> Ply1_de_stroke
+			10: FH_DownMid_Back_P1 { ball = 2 } -> Ply1_mid_stroke
+			0: BH_InsideOut_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			0: BH_InsideIn_Back_P1 { ball = 1} -> Ply1_de_stroke
+			0: BH_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			60: Lob_Crosscourt_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			24: Lob_Downline_Back_P1 { ball = 1} -> Ply1_de_stroke
+			10: Lob_DownMid_Back_P1 { ball = 2 } -> Ply1_mid_stroke
+			0: Volley_InsideOut_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			0: Volley_InsideIn_Back_P1 { ball = 1} -> Ply1_de_stroke
+			0: Volley_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
 
-      // front player receives stroke (player 2)
-			60: FH_Crosscourt { ball = 6} -> Ply2_ad_stroke
-			24: FH_Downline { ball = 4} -> Ply2_de_stroke
-			10: FH_DownMid { ball = 5 } -> Ply2_mid_stroke
-			0: BH_InsideOut { ball = 6} -> Ply2_ad_stroke
-			0: BH_InsideIn { ball = 4} -> Ply2_de_stroke
-			0: BH_DownMid { ball = 5} -> Ply2_mid_stroke
+      // back player receives stroke (player 2) (forehand, backhand, lob, volley)
+			60: FH_Crosscourt_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			24: FH_Downline_Back_P2 { ball = 1} -> Ply2_de_stroke
+			10: FH_DownMid_Back_P2 { ball = 2 } -> Ply2_mid_stroke
+			0: BH_InsideOut_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			0: BH_InsideIn_Back_P2 { ball = 1} -> Ply2_de_stroke
+			0: BH_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			60: Lob_Crosscourt_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			24: Lob_Downline_Back_P2 { ball = 1} -> Ply2_de_stroke
+			10: Lob_DownMid_Back_P2 { ball = 2 } -> Ply2_mid_stroke
+			0: Volley_InsideOut_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			0: Volley_InsideIn_Back_P2 { ball = 1} -> Ply2_de_stroke
+			0: Volley_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+
+      // front player receives stroke (player 2) (forehand, backhand, dropshot, volley)
+			60: FH_Crosscourt_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			24: FH_Downline_Front_P2 { ball = 4} -> Ply2_de_stroke
+			10: FH_DownMid_Front_P2 { ball = 5 } -> Ply2_mid_stroke
+			0: BH_InsideOut_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			0: BH_InsideIn_Front_P2 { ball = 4} -> Ply2_de_stroke
+			0: BH_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			60: DS_Crosscourt_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			24: DS_Downline_Front_P2 { ball = 4} -> Ply2_de_stroke
+			10: DS_DownMid_Front_P2 { ball = 5 } -> Ply2_mid_stroke
+			0: Volley_InsideOut_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			0: Volley_InsideIn_Front_P2 { ball = 4} -> Ply2_de_stroke
+			0: Volley_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+	
+      // front player receives stroke (player 1) (forehand, backhand, dropshot, volley)
+			60: FH_Crosscourt_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			24: FH_Downline_Front_P1 { ball = 4} -> Ply1_de_stroke
+			10: FH_DownMid_Front_P1 { ball = 5 } -> Ply1_mid_stroke
+			0: BH_InsideOut_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			0: BH_InsideIn_Front_P1 { ball = 4} -> Ply1_de_stroke
+			0: BH_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			60: DS_Crosscourt_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			24: DS_Downline_Front_P1 { ball = 4} -> Ply1_de_stroke
+			10: DS_DownMid_Front_P1 { ball = 5 } -> Ply1_mid_stroke
+			0: Volley_InsideOut_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			0: Volley_InsideIn_Front_P1 { ball = 4} -> Ply1_de_stroke
+			0: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 
 			53: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt   	
@@ -179,21 +299,61 @@ Ply3_ad_stroke = pcase{
 
 // deuce stroke is when player 4 hit position is 9 or 12 (front or back)
 Ply4_de_stroke = pcase { // if already 
-      // back player receives stroke (player 1)
-			43: BH_Crosscourt { ball = 1;} -> Ply1_de_stroke
-			28: BH_Downline { ball = 3} -> Ply1_ad_stroke
-			41: BH_DownMid { ball = 2} -> Ply1_mid_stroke
-			7: FH_InsideIn {ball = 3} -> Ply1_ad_stroke
-			4: FH_InsideOut { ball = 1} -> Ply1_de_stroke
-			3: FH_DownMid { ball = 2} -> Ply1_mid_stroke
+      // back player receives stroke (player 1) (forehand, backhand, lob, volley)
+			43: BH_Crosscourt_Back_P1 { ball = 1;} -> Ply1_de_stroke
+			28: BH_Downline_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			41: BH_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			7: FH_InsideIn_Back_P1 {ball = 3} -> Ply1_ad_stroke
+			4: FH_InsideOut_Back_P1 { ball = 1} -> Ply1_de_stroke
+			3: FH_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			43: Lob_Crosscourt_Back_P1 { ball = 1;} -> Ply1_de_stroke
+			28: Lob_Downline_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			41: Lob_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			7: Volley_InsideIn_Back_P1 {ball = 3} -> Ply1_ad_stroke
+			4: Volley_InsideOut_Back_P1 { ball = 1} -> Ply1_de_stroke
+			3: Volley_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
 
-      // front player receives stroke (player 2)
-			43: BH_Crosscourt { ball = 4;} -> Ply2_de_stroke
-			28: BH_Downline { ball = 6} -> Ply2_ad_stroke
-			41: BH_DownMid { ball = 5} -> Ply2_mid_stroke
-			7: FH_InsideIn {ball = 6} -> Ply2_ad_stroke
-			4: FH_InsideOut { ball = 4} -> Ply2_de_stroke
-			3: FH_DownMid { ball = 5} -> Ply2_mid_stroke
+      // back player receives stroke (player 2) (forehand, backhand, lob, volley)
+			43: BH_Crosscourt_Back_P2 { ball = 1;} -> Ply2_de_stroke
+			28: BH_Downline_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			41: BH_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			7: FH_InsideIn_Back_P2 {ball = 3} -> Ply2_ad_stroke
+			4: FH_InsideOut_Back_P2 { ball = 1} -> Ply2_de_stroke
+			3: FH_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			43: Lob_Crosscourt_Back_P2 { ball = 1;} -> Ply2_de_stroke
+			28: Lob_Downline_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			41: Lob_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			7: Volley_InsideIn_Back_P2 {ball = 3} -> Ply2_ad_stroke
+			4: Volley_InsideOut_Back_P2 { ball = 1} -> Ply2_de_stroke
+			3: Volley_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+
+      // front player receives stroke (player 2) (forehand, backhand, dropshot, volley)
+			43: BH_Crosscourt_Front_P2 { ball = 4;} -> Ply2_de_stroke
+			28: BH_Downline_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			41: BH_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			7: FH_InsideIn_Front_P2 {ball = 6} -> Ply2_ad_stroke
+			4: FH_InsideOut_Front_P2 { ball = 4} -> Ply2_de_stroke
+			3: FH_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			43: DS_Crosscourt_Front_P2 { ball = 4;} -> Ply2_de_stroke
+			28: DS_Downline_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			41: DS_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			7: Volley_InsideIn_Front_P2 {ball = 6} -> Ply2_ad_stroke
+			4: Volley_InsideOut_Front_P2 { ball = 4} -> Ply2_de_stroke
+			3: Volley_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+	
+      // front player receives stroke (player 1) (forehand, backhand, dropshot, volley)
+			43: BH_Crosscourt_Front_P1 { ball = 4;} -> Ply1_de_stroke
+			28: BH_Downline_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			41: BH_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			7: FH_InsideIn_Front_P1 {ball = 6} -> Ply1_ad_stroke
+			4: FH_InsideOut_Front_P1 { ball = 4} -> Ply1_de_stroke
+			3: FH_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			43: DS_Crosscourt_Front_P1 { ball = 4;} -> Ply1_de_stroke
+			28: DS_Downline_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			41: DS_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			7: Volley_InsideIn_Front_P1 {ball = 6} -> Ply1_ad_stroke
+			4: Volley_InsideOut_Front_P1 { ball = 4} -> Ply1_de_stroke
+			3: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 
 			34: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt      		                                                            
@@ -201,21 +361,61 @@ Ply4_de_stroke = pcase { // if already
 
 // mid stroke is when player 4 hit position is 8 or 11 (front or back)
 Ply4_mid_stroke = noMove -> pcase{
-      // back player receives stroke (player 1)
-			20: FH_InsideOut{ball = 1} -> Ply1_de_stroke
-			58: FH_Crosscourt { ball = 3} -> Ply1_ad_stroke
-			20: FH_DownMid { ball = 2 } -> Ply1_mid_stroke
-			3: BH_InsideOut { ball = 3} -> Ply1_ad_stroke
-			17: BH_DownMid { ball = 2} -> Ply1_mid_stroke
-			29: BH_Crosscourt { ball = 1} -> Ply1_de_stroke
+      // back player receives stroke (player 1) (forehand, backhand, lob, volley)
+			20: FH_InsideOut_Back_P1 {ball = 1} -> Ply1_de_stroke
+			58: FH_Crosscourt_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			20: FH_DownMid_Back_P1 { ball = 2 } -> Ply1_mid_stroke
+			3: BH_InsideOut_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			17: BH_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			29: BH_Crosscourt_Back_P1 { ball = 1} -> Ply1_de_stroke
+			20: Lob_InsideOut_Back_P1 {ball = 1} -> Ply1_de_stroke
+			58: Lob_Crosscourt_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			20: Lob_DownMid_Back_P1 { ball = 2 } -> Ply1_mid_stroke
+			3: Volley_InsideOut_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			17: Volley_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			29: Volley_Crosscourt_Back_P1 { ball = 1} -> Ply1_de_stroke
+	
+      // back player receives stroke (player 2) (forehand, backhand, lob, volley)
+			20: FH_InsideOut_Back_P2 {ball = 1} -> Ply2_de_stroke
+			58: FH_Crosscourt_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			20: FH_DownMid_Back_P2 { ball = 2 } -> Ply2_mid_stroke
+			3: BH_InsideOut_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			17: BH_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			29: BH_Crosscourt_Back_P2 { ball = 1} -> Ply2_de_stroke
+			20: Lob_InsideOut_Back_P2 {ball = 1} -> Ply2_de_stroke
+			58: Lob_Crosscourt_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			20: Lob_DownMid_Back_P2 { ball = 2 } -> Ply2_mid_stroke
+			3: Volley_InsideOut_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			17: Volley_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			29: Volley_Crosscourt_Back_P2 { ball = 1} -> Ply2_de_stroke
 
-      // front player receives stroke (player 2)
-			20: FH_InsideOut{ball = 4} -> Ply2_de_stroke
-			58: FH_Crosscourt { ball = 6} -> Ply2_ad_stroke
-			20: FH_DownMid { ball = 5 } -> Ply2_mid_stroke
-			3: BH_InsideOut { ball = 6} -> Ply2_ad_stroke
-			17: BH_DownMid { ball = 5} -> Ply2_mid_stroke
-			29: BH_Crosscourt { ball = 4} -> Ply2_de_stroke
+      // front player receives stroke (player 2) (forehand, backhand, dropshot, volley)
+			20: FH_InsideOut_Front_P2 {ball = 4} -> Ply2_de_stroke
+			58: FH_Crosscourt_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			20: FH_DownMid_Front_P2 { ball = 5 } -> Ply2_mid_stroke
+			3: BH_InsideOut_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			17: BH_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			29: BH_Crosscourt_Front_P2 { ball = 4} -> Ply2_de_stroke
+			20: DS_InsideOut_Front_P2 {ball = 4} -> Ply2_de_stroke
+			58: DS_Crosscourt_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			20: DS_DownMid_Front_P2 { ball = 5 } -> Ply2_mid_stroke
+			3: Volley_InsideOut_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			17: Volley_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			29: Volley_Crosscourt_Front_P2 { ball = 4} -> Ply2_de_stroke
+	
+      // front player receives stroke (player 1) (forehand, backhand, dropshot, volley)
+			20: FH_InsideOut_Front_P1 {ball = 4} -> Ply1_de_stroke
+			58: FH_Crosscourt_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			20: FH_DownMid_Front_P1 { ball = 5 } -> Ply1_mid_stroke
+			3: BH_InsideOut_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			17: BH_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			29: BH_Crosscourt_Front_P1 { ball = 4} -> Ply1_de_stroke
+			20: DS_InsideOut_Front_P1 {ball = 4} -> Ply1_de_stroke
+			58: DS_Crosscourt_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			20: DS_DownMid_Front_P1 { ball = 5 } -> Ply1_mid_stroke
+			3: Volley_InsideOut_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			17: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			29: Volley_Crosscourt_Front_P1 { ball = 4} -> Ply1_de_stroke
 
 			15: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt   
@@ -224,21 +424,61 @@ Ply4_mid_stroke = noMove -> pcase{
 
 // ad stroke is when player 4 hit position is 7 or 10 (front or back)
 Ply4_ad_stroke = pcase{
-      // back player receives stroke (player 1)
-			60: FH_Crosscourt { ball = 3} -> Ply1_ad_stroke
-			24: FH_Downline { ball = 1} -> Ply1_de_stroke
-			10: FH_DownMid { ball = 2 } -> Ply1_mid_stroke
-			0: BH_InsideOut { ball = 3} -> Ply1_ad_stroke
-			0: BH_InsideIn { ball = 1} -> Ply1_de_stroke
-			0: BH_DownMid { ball = 2} -> Ply1_mid_stroke
+      // back player receives stroke (player 1) (forehand, backhand, lob, volley)
+			60: FH_Crosscourt_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			24: FH_Downline_Back_P1 { ball = 1} -> Ply1_de_stroke
+			10: FH_DownMid_Back_P1 { ball = 2 } -> Ply1_mid_stroke
+			0: BH_InsideOut_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			0: BH_InsideIn_Back_P1 { ball = 1} -> Ply1_de_stroke
+			0: BH_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
+			60: Lob_Crosscourt_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			24: Lob_Downline_Back_P1 { ball = 1} -> Ply1_de_stroke
+			10: Lob_DownMid_Back_P1 { ball = 2 } -> Ply1_mid_stroke
+			0: Volley_InsideOut_Back_P1 { ball = 3} -> Ply1_ad_stroke
+			0: Volley_InsideIn_Back_P1 { ball = 1} -> Ply1_de_stroke
+			0: Volley_DownMid_Back_P1 { ball = 2} -> Ply1_mid_stroke
 
-      // front player receives stroke (player 2)
-			60: FH_Crosscourt { ball = 6} -> Ply2_ad_stroke
-			24: FH_Downline { ball = 4} -> Ply2_de_stroke
-			10: FH_DownMid { ball = 5 } -> Ply2_mid_stroke
-			0: BH_InsideOut { ball = 6} -> Ply2_ad_stroke
-			0: BH_InsideIn { ball = 4} -> Ply2_de_stroke
-			0: BH_DownMid { ball = 5} -> Ply2_mid_stroke
+      // back player receives stroke (player 2) (forehand, backhand, lob, volley)
+			60: FH_Crosscourt_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			24: FH_Downline_Back_P2 { ball = 1} -> Ply2_de_stroke
+			10: FH_DownMid_Back_P2 { ball = 2 } -> Ply2_mid_stroke
+			0: BH_InsideOut_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			0: BH_InsideIn_Back_P2 { ball = 1} -> Ply2_de_stroke
+			0: BH_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+			60: Lob_Crosscourt_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			24: Lob_Downline_Back_P2 { ball = 1} -> Ply2_de_stroke
+			10: Lob_DownMid_Back_P2 { ball = 2 } -> Ply2_mid_stroke
+			0: Volley_InsideOut_Back_P2 { ball = 3} -> Ply2_ad_stroke
+			0: Volley_InsideIn_Back_P2 { ball = 1} -> Ply2_de_stroke
+			0: Volley_DownMid_Back_P2 { ball = 2} -> Ply2_mid_stroke
+
+      // front player receives stroke (player 2) (forehand, backhand, dropshot, volley)
+			60: FH_Crosscourt_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			24: FH_Downline_Front_P2 { ball = 4} -> Ply2_de_stroke
+			10: FH_DownMid_Front_P2 { ball = 5 } -> Ply2_mid_stroke
+			0: BH_InsideOut_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			0: BH_InsideIn_Front_P2 { ball = 4} -> Ply2_de_stroke
+			0: BH_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+			60: DS_Crosscourt_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			24: DS_Downline_Front_P2 { ball = 4} -> Ply2_de_stroke
+			10: DS_DownMid_Front_P2 { ball = 5 } -> Ply2_mid_stroke
+			0: Volley_InsideOut_Front_P2 { ball = 6} -> Ply2_ad_stroke
+			0: Volley_InsideIn_Front_P2 { ball = 4} -> Ply2_de_stroke
+			0: Volley_DownMid_Front_P2 { ball = 5} -> Ply2_mid_stroke
+	
+      // front player receives stroke (player 1) (forehand, backhand, dropshot, volley)
+			60: FH_Crosscourt_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			24: FH_Downline_Front_P1 { ball = 4} -> Ply1_de_stroke
+			10: FH_DownMid_Front_P1 { ball = 5 } -> Ply1_mid_stroke
+			0: BH_InsideOut_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			0: BH_InsideIn_Front_P1 { ball = 4} -> Ply1_de_stroke
+			0: BH_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
+			60: DS_Crosscourt_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			24: DS_Downline_Front_P1 { ball = 4} -> Ply1_de_stroke
+			10: DS_DownMid_Front_P1 { ball = 5 } -> Ply1_mid_stroke
+			0: Volley_InsideOut_Front_P1 { ball = 6} -> Ply1_ad_stroke
+			0: Volley_InsideIn_Front_P1 { ball = 4} -> Ply1_de_stroke
+			0: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 
 			53: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt   	
@@ -318,21 +558,61 @@ Ad_Ply4Serve_2nd = pcase {                 //1st serve is out
  	     
 // deuce stroke is when player 1 hit position is 1 or 4 (back or front)
 Ply1_de_stroke = pcase{
-      // back player receives stroke (player 3)
-			48: FH_Crosscourt { ball = 12} -> Ply3_de_stroke
-			19: FH_Downline { ball = 10} -> Ply3_ad_stroke
-			22: FH_DownMid { ball = 11} -> Ply3_mid_stroke
-			0: BH_InsideIn {ball = 10} -> Ply3_ad_stroke
-			0: BH_InsideOut { ball = 12} -> Ply3_de_stroke
-			0: BH_DownMid { ball = 11} -> Ply3_mid_stroke
+      // back player receives stroke (player 3) (forehand, backhand, lob, volley)
+			48: FH_Crosscourt_Back_P3 { ball = 12} -> Ply3_de_stroke
+			19: FH_Downline_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			22: FH_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			0: BH_InsideIn_Back_P3 {ball = 10} -> Ply3_ad_stroke
+			0: BH_InsideOut_Back_P3 { ball = 12} -> Ply3_de_stroke
+			0: BH_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			48: Lob_Crosscourt_Back_P3 { ball = 12} -> Ply3_de_stroke
+			19: Lob_Downline_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			22: Lob_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			0: Volley_InsideIn_Back_P3 {ball = 10} -> Ply3_ad_stroke
+			0: Volley_InsideOut_Back_P3 { ball = 12} -> Ply3_de_stroke
+			0: Volley_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+	
+      // back player receives stroke (player 4) (forehand, backhand, lob, volley)
+			48: FH_Crosscourt_Back_P4 { ball = 12} -> Ply4_de_stroke
+			19: FH_Downline_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			22: FH_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			0: BH_InsideIn_Back_P4 {ball = 10} -> Ply4_ad_stroke
+			0: BH_InsideOut_Back_P4 { ball = 12} -> Ply4_de_stroke
+			0: BH_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			48: Lob_Crosscourt_Back_P4 { ball = 12} -> Ply4_de_stroke
+			19: Lob_Downline_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			22: Lob_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			0: Volley_InsideIn_Back_P4 {ball = 10} -> Ply4_ad_stroke
+			0: Volley_InsideOut_Back_P4 { ball = 12} -> Ply4_de_stroke
+			0: Volley_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
 
-      // front player receives stroke (player 4)
-			48: FH_Crosscourt { ball = 9} -> Ply4_de_stroke
-			19: FH_Downline { ball = 7} -> Ply4_ad_stroke
-			22: FH_DownMid { ball = 8} -> Ply4_mid_stroke
-			0: BH_InsideIn {ball = 7} -> Ply4_ad_stroke
-			0: BH_InsideOut { ball = 9} -> Ply4_de_stroke
-			0: BH_DownMid { ball = 8} -> Ply4_mid_stroke
+      // front player receives stroke (player 4) (forehand, backhand, dropshot, volley)
+			48: FH_Crosscourt_Front_P4 { ball = 9} -> Ply4_de_stroke
+			19: FH_Downline_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			22: FH_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			0: BH_InsideIn_Front_P4 {ball = 7} -> Ply4_ad_stroke
+			0: BH_InsideOut_Front_P4 { ball = 9} -> Ply4_de_stroke
+			0: BH_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			48: DS_Crosscourt_Front_P4 { ball = 9} -> Ply4_de_stroke
+			19: DS_Downline_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			22: DS_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			0: Volley_InsideIn_Front_P4 {ball = 7} -> Ply4_ad_stroke
+			0: Volley_InsideOut_Front_P4 { ball = 9} -> Ply4_de_stroke
+			0: Volley_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+
+      // front player receives stroke (player 3) (forehand, backhand, dropshot, volley)
+			48: FH_Crosscourt_Front_P3 { ball = 9} -> Ply3_de_stroke
+			19: FH_Downline_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			22: FH_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			0: BH_InsideIn_Front_P3 {ball = 7} -> Ply3_ad_stroke
+			0: BH_InsideOut_Front_P3 { ball = 9} -> Ply3_de_stroke
+			0: BH_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			48: DS_Crosscourt_Front_P3 { ball = 9} -> Ply3_de_stroke
+			19: DS_Downline_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			22: DS_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			0: Volley_InsideIn_Front_P3 {ball = 7} -> Ply3_ad_stroke
+			0: Volley_InsideOut_Front_P3 { ball = 9} -> Ply3_de_stroke
+			0: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
 
 			48: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt      		                                                            
@@ -340,21 +620,61 @@ Ply1_de_stroke = pcase{
 
 // mid stroke is when player 1 hit position is 2 or 5 (back or front)
 Ply1_mid_stroke = pcase{
-      // back player receives stroke (player 3)
-			23: FH_InsideOut{ball = 10} -> Ply3_ad_stroke
-			43: FH_Crosscourt { ball = 12} -> Ply3_de_stroke
-			17: FH_DownMid { ball = 11 } -> Ply3_mid_stroke
-			11: BH_InsideOut { ball = 12} -> Ply3_de_stroke
-			15: BH_DownMid { ball = 11} -> Ply3_mid_stroke
-			8: BH_Crosscourt { ball = 10} -> Ply3_ad_stroke
+      // back player receives stroke (player 3) (forehand, backhand, lob, volley)
+			23: FH_InsideOut_Back_P3 {ball = 10} -> Ply3_ad_stroke
+			43: FH_Crosscourt_Back_P3 { ball = 12} -> Ply3_de_stroke
+			17: FH_DownMid_Back_P3 { ball = 11 } -> Ply3_mid_stroke
+			11: BH_InsideOut_Back_P3 { ball = 12} -> Ply3_de_stroke
+			15: BH_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			8: BH_Crosscourt_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			23: Lob_InsideOut_Back_P3 {ball = 10} -> Ply3_ad_stroke
+			43: Lob_Crosscourt_Back_P3 { ball = 12} -> Ply3_de_stroke
+			17: Lob_DownMid_Back_P3 { ball = 11 } -> Ply3_mid_stroke
+			11: Volley_InsideOut_Back_P3 { ball = 12} -> Ply3_de_stroke
+			15: Volley_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			8: Volley_Crosscourt_Back_P3 { ball = 10} -> Ply3_ad_stroke
 
-      // front player receives stroke (player 4)
-			23: FH_InsideOut{ball = 7} -> Ply4_ad_stroke
-			43: FH_Crosscourt { ball = 9} -> Ply4_de_stroke
-			17: FH_DownMid { ball = 8 } -> Ply4_mid_stroke
-			11: BH_InsideOut { ball = 9} -> Ply4_de_stroke
-			15: BH_DownMid { ball = 8} -> Ply4_mid_stroke
-			8: BH_Crosscourt { ball = 7} -> Ply4_ad_stroke
+      // back player receives stroke (player 4) (forehand, backhand, lob, volley)
+			23: FH_InsideOut_Back_P4 {ball = 10} -> Ply4_ad_stroke
+			43: FH_Crosscourt_Back_P4 { ball = 12} -> Ply4_de_stroke
+			17: FH_DownMid_Back_P4 { ball = 11 } -> Ply4_mid_stroke
+			11: BH_InsideOut_Back_P4 { ball = 12} -> Ply4_de_stroke
+			15: BH_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			8: BH_Crosscourt_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			23: Lob_InsideOut_Back_P4 {ball = 10} -> Ply4_ad_stroke
+			43: Lob_Crosscourt_Back_P4 { ball = 12} -> Ply4_de_stroke
+			17: Lob_DownMid_Back_P4 { ball = 11 } -> Ply4_mid_stroke
+			11: Volley_InsideOut_Back_P4 { ball = 12} -> Ply4_de_stroke
+			15: Volley_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			8: Volley_Crosscourt_Back_P4 { ball = 10} -> Ply4_ad_stroke
+
+      // front player receives stroke (player 4) (forehand, backhand, dropshot, volley)
+			23: FH_InsideOut_Front_P4 {ball = 7} -> Ply4_ad_stroke
+			43: FH_Crosscourt_Front_P4 { ball = 9} -> Ply4_de_stroke
+			17: FH_DownMid_Front_P4 { ball = 8 } -> Ply4_mid_stroke
+			11: BH_InsideOut_Front_P4 { ball = 9} -> Ply4_de_stroke
+			15: BH_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			8: BH_Crosscourt_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			23: DS_InsideOut_Front_P4 {ball = 7} -> Ply4_ad_stroke
+			43: DS_Crosscourt_Front_P4 { ball = 9} -> Ply4_de_stroke
+			17: DS_DownMid_Front_P4 { ball = 8 } -> Ply4_mid_stroke
+			11: Volley_InsideOut_Front_P4 { ball = 9} -> Ply4_de_stroke
+			15: Volley_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			8: Volley_Crosscourt_Front_P4 { ball = 7} -> Ply4_ad_stroke
+
+      // front player receives stroke (player 3) (forehand, backhand, dropshot, volley)
+			23: FH_InsideOut_Front_P3 {ball = 7} -> Ply3_ad_stroke
+			43: FH_Crosscourt_Front_P3 { ball = 9} -> Ply3_de_stroke
+			17: FH_DownMid_Front_P3 { ball = 8 } -> Ply3_mid_stroke
+			11: BH_InsideOut_Front_P3 { ball = 9} -> Ply3_de_stroke
+			15: BH_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			8: BH_Crosscourt_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			23: DS_InsideOut_Front_P3 {ball = 7} -> Ply3_ad_stroke
+			43: DS_Crosscourt_Front_P3 { ball = 9} -> Ply3_de_stroke
+			17: DS_DownMid_Front_P3 { ball = 8 } -> Ply3_mid_stroke
+			11: Volley_InsideOut_Front_P3 { ball = 9} -> Ply3_de_stroke
+			15: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			8: Volley_Crosscourt_Front_P3 { ball = 7} -> Ply3_ad_stroke
 
 			20: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt   
@@ -362,21 +682,61 @@ Ply1_mid_stroke = pcase{
 
 // ad stroke is when player 1 hit position is 3 or 6 (back or front)
 Ply1_ad_stroke = pcase{
-      // back player receives stroke (player 3)
-			60: BH_Crosscourt { ball = 10} -> Ply3_ad_stroke
-			17: BH_Downline { ball = 12} -> Ply3_de_stroke
-			47: BH_DownMid { ball = 11 } -> Ply3_mid_stroke
-			16: FH_InsideOut { ball = 10} -> Ply3_ad_stroke
-			8: FH_InsideIn { ball = 12} -> Ply3_de_stroke
-			3: FH_DownMid { ball = 11} -> Ply3_mid_stroke
+      // back player receives stroke (player 3) (forehand, backhand, lob, volley)
+			60: BH_Crosscourt_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			17: BH_Downline_Back_P3 { ball = 12} -> Ply3_de_stroke
+			47: BH_DownMid_Back_P3 { ball = 11 } -> Ply3_mid_stroke
+			16: FH_InsideOut_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			8: FH_InsideIn_Back_P3 { ball = 12} -> Ply3_de_stroke
+			3: FH_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			60: Lob_Crosscourt_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			17: Lob_Downline_Back_P3 { ball = 12} -> Ply3_de_stroke
+			47: Lob_DownMid_Back_P3 { ball = 11 } -> Ply3_mid_stroke
+			16: Volley_InsideOut_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			8: Volley_InsideIn_Back_P3 { ball = 12} -> Ply3_de_stroke
+			3: Volley_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
 
-      // front player receives stroke (player 4)
-			60: BH_Crosscourt { ball = 7} -> Ply4_ad_stroke
-			17: BH_Downline { ball = 9} -> Ply4_de_stroke
-			47: BH_DownMid { ball = 8 } -> Ply4_mid_stroke
-			16: FH_InsideOut { ball = 7} -> Ply4_ad_stroke
-			8: FH_InsideIn { ball = 9} -> Ply4_de_stroke
-			4: FH_DownMid { ball = 8} -> Ply4_mid_stroke
+      // back player receives stroke (player 4) (forehand, backhand, lob, volley)
+			60: BH_Crosscourt_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			17: BH_Downline_Back_P4 { ball = 12} -> Ply4_de_stroke
+			47: BH_DownMid_Back_P4 { ball = 11 } -> Ply4_mid_stroke
+			16: FH_InsideOut_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			8: FH_InsideIn_Back_P4 { ball = 12} -> Ply4_de_stroke
+			3: FH_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			60: Lob_Crosscourt_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			17: Lob_Downline_Back_P4 { ball = 12} -> Ply4_de_stroke
+			47: Lob_DownMid_Back_P4 { ball = 11 } -> Ply4_mid_stroke
+			16: Volley_InsideOut_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			8: Volley_InsideIn_Back_P4 { ball = 12} -> Ply4_de_stroke
+			3: Volley_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+
+      // front player receives stroke (player 4) (forehand, backhand, dropshot, volley)
+			60: BH_Crosscourt_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			17: BH_Downline_Front_P4 { ball = 9} -> Ply4_de_stroke
+			47: BH_DownMid_Front_P4 { ball = 8 } -> Ply4_mid_stroke
+			16: FH_InsideOut_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			8: FH_InsideIn_Front_P4 { ball = 9} -> Ply4_de_stroke
+			4: FH_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			60: DS_Crosscourt_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			17: DS_Downline_Front_P4 { ball = 9} -> Ply4_de_stroke
+			47: DS_DownMid_Front_P4 { ball = 8 } -> Ply4_mid_stroke
+			16: Volley_InsideOut_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			8: Volley_InsideIn_Front_P4 { ball = 9} -> Ply4_de_stroke
+			4: Volley_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+
+      // front player receives stroke (player 3) (forehand, backhand, dropshot, volley)
+			60: BH_Crosscourt_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			17: BH_Downline_Front_P3 { ball = 9} -> Ply3_de_stroke
+			47: BH_DownMid_Front_P3 { ball = 8 } -> Ply3_mid_stroke
+			16: FH_InsideOut_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			8: FH_InsideIn_Front_P3 { ball = 9} -> Ply3_de_stroke
+			4: FH_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			60: DS_Crosscourt_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			17: DS_Downline_Front_P3 { ball = 9} -> Ply3_de_stroke
+			47: DS_DownMid_Front_P3 { ball = 8 } -> Ply3_mid_stroke
+			16: Volley_InsideOut_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			8: Volley_InsideIn_Front_P3 { ball = 9} -> Ply3_de_stroke
+			4: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
 
 			33: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt 	
@@ -384,21 +744,61 @@ Ply1_ad_stroke = pcase{
 
 // deuce stroke is when player 2 hit position is 4 or 1 (front or back)
 Ply2_de_stroke = pcase{
-      // back player receives stroke (player 3)
-			48: FH_Crosscourt { ball = 12} -> Ply3_de_stroke
-			19: FH_Downline { ball = 10} -> Ply3_ad_stroke
-			22: FH_DownMid { ball = 11} -> Ply3_mid_stroke
-			0: BH_InsideIn {ball = 10} -> Ply3_ad_stroke
-			0: BH_InsideOut { ball = 12} -> Ply3_de_stroke
-			0: BH_DownMid { ball = 11} -> Ply3_mid_stroke
+      // back player receives stroke (player 3) (forehand, backhand, lob, volley)
+			48: FH_Crosscourt_Back_P3 { ball = 12} -> Ply3_de_stroke
+			19: FH_Downline_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			22: FH_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			0: BH_InsideIn_Back_P3 {ball = 10} -> Ply3_ad_stroke
+			0: BH_InsideOut_Back_P3 { ball = 12} -> Ply3_de_stroke
+			0: BH_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			48: Lob_Crosscourt_Back_P3 { ball = 12} -> Ply3_de_stroke
+			19: Lob_Downline_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			22: Lob_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			0: Volley_InsideIn_Back_P3 {ball = 10} -> Ply3_ad_stroke
+			0: Volley_InsideOut_Back_P3 { ball = 12} -> Ply3_de_stroke
+			0: Volley_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
 
-      // front player receives stroke (player 4)
-			48: FH_Crosscourt { ball = 9} -> Ply4_de_stroke
-			19: FH_Downline { ball = 7} -> Ply4_ad_stroke
-			22: FH_DownMid { ball = 8} -> Ply4_mid_stroke
-			0: BH_InsideIn {ball = 7} -> Ply4_ad_stroke
-			0: BH_InsideOut { ball = 9} -> Ply4_de_stroke
-			0: BH_DownMid { ball = 8} -> Ply4_mid_stroke
+      // back player receives stroke (player 4) (forehand, backhand, lob, volley)
+			48: FH_Crosscourt_Back_P4 { ball = 12} -> Ply4_de_stroke
+			19: FH_Downline_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			22: FH_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			0: BH_InsideIn_Back_P4 {ball = 10} -> Ply4_ad_stroke
+			0: BH_InsideOut_Back_P4 { ball = 12} -> Ply4_de_stroke
+			0: BH_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			48: Lob_Crosscourt_Back_P4 { ball = 12} -> Ply4_de_stroke
+			19: Lob_Downline_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			22: Lob_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			0: Volley_InsideIn_Back_P4 {ball = 10} -> Ply4_ad_stroke
+			0: Volley_InsideOut_Back_P4 { ball = 12} -> Ply4_de_stroke
+			0: Volley_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+
+      // front player receives stroke (player 4) (forehand, backhand, dropshot, volley)
+			48: FH_Crosscourt_Front_P4 { ball = 9} -> Ply4_de_stroke
+			19: FH_Downline_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			22: FH_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			0: BH_InsideIn_Front_P4 {ball = 7} -> Ply4_ad_stroke
+			0: BH_InsideOut_Front_P4 { ball = 9} -> Ply4_de_stroke
+			0: BH_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			48: DS_Crosscourt_Front_P4 { ball = 9} -> Ply4_de_stroke
+			19: DS_Downline_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			22: DS_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			0: Volley_InsideIn_Front_P4 {ball = 7} -> Ply4_ad_stroke
+			0: Volley_InsideOut_Front_P4 { ball = 9} -> Ply4_de_stroke
+			0: Volley_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+		
+      // front player receives stroke (player 3) (forehand, backhand, dropshot, volley)
+			48: FH_Crosscourt_Front_P3 { ball = 9} -> Ply3_de_stroke
+			19: FH_Downline_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			22: FH_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			0: BH_InsideIn_Front_P3 {ball = 7} -> Ply3_ad_stroke
+			0: BH_InsideOut_Front_P3 { ball = 9} -> Ply3_de_stroke
+			0: BH_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			48: DS_Crosscourt_Front_P3 { ball = 9} -> Ply3_de_stroke
+			19: DS_Downline_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			22: DS_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			0: Volley_InsideIn_Front_P3 {ball = 7} -> Ply3_ad_stroke
+			0: Volley_InsideOut_Front_P3 { ball = 9} -> Ply3_de_stroke
+			0: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
 
 			48: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt      		                                                            
@@ -406,21 +806,61 @@ Ply2_de_stroke = pcase{
 
 // mid stroke is when player 2 hit position is 5 or 2 (front or back)
 Ply2_mid_stroke = pcase{
-      // back player receives stroke (player 3)
-			23: FH_InsideOut{ball = 10} -> Ply3_ad_stroke
-			43: FH_Crosscourt { ball = 12} -> Ply3_de_stroke
-			17: FH_DownMid { ball = 11 } -> Ply3_mid_stroke
-			11: BH_InsideOut { ball = 12} -> Ply3_de_stroke
-			15: BH_DownMid { ball = 11} -> Ply3_mid_stroke
-			8: BH_Crosscourt { ball = 10} -> Ply3_ad_stroke
+      // back player receives stroke (player 3) (forehand, backhand, lob, volley)
+			23: FH_InsideOut_Back_P3 {ball = 10} -> Ply3_ad_stroke
+			43: FH_Crosscourt_Back_P3 { ball = 12} -> Ply3_de_stroke
+			17: FH_DownMid_Back_P3 { ball = 11 } -> Ply3_mid_stroke
+			11: BH_InsideOut_Back_P3 { ball = 12} -> Ply3_de_stroke
+			15: BH_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			8: BH_Crosscourt_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			23: Lob_InsideOut_Back_P3 {ball = 10} -> Ply3_ad_stroke
+			43: Lob_Crosscourt_Back_P3 { ball = 12} -> Ply3_de_stroke
+			17: Lob_DownMid_Back_P3 { ball = 11 } -> Ply3_mid_stroke
+			11: Volley_InsideOut_Back_P3 { ball = 12} -> Ply3_de_stroke
+			15: Volley_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			8: Volley_Crosscourt_Back_P3 { ball = 10} -> Ply3_ad_stroke
 
-      // front player receives stroke (player 4)
-			23: FH_InsideOut{ball = 7} -> Ply4_ad_stroke
-			43: FH_Crosscourt { ball = 9} -> Ply4_de_stroke
-			17: FH_DownMid { ball = 8 } -> Ply4_mid_stroke
-			11: BH_InsideOut { ball = 9} -> Ply4_de_stroke
-			15: BH_DownMid { ball = 8} -> Ply4_mid_stroke
-			8: BH_Crosscourt { ball = 7} -> Ply4_ad_stroke
+      // back player receives stroke (player 4) (forehand, backhand, lob, volley)
+			23: FH_InsideOut_Back_P4 {ball = 10} -> Ply4_ad_stroke
+			43: FH_Crosscourt_Back_P4 { ball = 12} -> Ply4_de_stroke
+			17: FH_DownMid_Back_P4 { ball = 11 } -> Ply4_mid_stroke
+			11: BH_InsideOut_Back_P4 { ball = 12} -> Ply4_de_stroke
+			15: BH_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			8: BH_Crosscourt_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			23: Lob_InsideOut_Back_P4 {ball = 10} -> Ply4_ad_stroke
+			43: Lob_Crosscourt_Back_P4 { ball = 12} -> Ply4_de_stroke
+			17: Lob_DownMid_Back_P4 { ball = 11 } -> Ply4_mid_stroke
+			11: Volley_InsideOut_Back_P4 { ball = 12} -> Ply4_de_stroke
+			15: Volley_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			8: Volley_Crosscourt_Back_P4 { ball = 10} -> Ply4_ad_stroke
+
+      // front player receives stroke (player 4) (forehand, backhand, dropshot, volley)
+			23: FH_InsideOut_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			43: FH_Crosscourt_Front_P4 { ball = 9} -> Ply4_de_stroke
+			17: FH_DownMid_Front_P4 { ball = 8 } -> Ply4_mid_stroke
+			11: BH_InsideOut_Front_P4 { ball = 9} -> Ply4_de_stroke
+			15: BH_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			8: BH_Crosscourt_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			23: DS_InsideOut_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			43: DS_Crosscourt_Front_P4 { ball = 9} -> Ply4_de_stroke
+			17: DS_DownMid_Front_P4 { ball = 8 } -> Ply4_mid_stroke
+			11: Volley_InsideOut_Front_P4 { ball = 9} -> Ply4_de_stroke
+			15: Volley_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			8: Volley_Crosscourt_Front_P4 { ball = 7} -> Ply4_ad_stroke
+
+      // front player receives stroke (player 3) (forehand, backhand, dropshot, volley)
+			23: FH_InsideOut_Front_P3 {ball = 7} -> Ply3_ad_stroke
+			43: FH_Crosscourt_Front_P3 { ball = 9} -> Ply3_de_stroke
+			17: FH_DownMid_Front_P3 { ball = 8 } -> Ply3_mid_stroke
+			11: BH_InsideOut_Front_P3 { ball = 9} -> Ply3_de_stroke
+			15: BH_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			8: BH_Crosscourt_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			23: DS_InsideOut_Front_P3 {ball = 7} -> Ply3_ad_stroke
+			43: DS_Crosscourt_Front_P3 { ball = 9} -> Ply3_de_stroke
+			17: DS_DownMid_Front_P3 { ball = 8 } -> Ply3_mid_stroke
+			11: Volley_InsideOut_Front_P3 { ball = 9} -> Ply3_de_stroke
+			15: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			8: Volley_Crosscourt_Front_P3 { ball = 7} -> Ply3_ad_stroke
 
 			20: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt   
@@ -428,21 +868,61 @@ Ply2_mid_stroke = pcase{
 
 // ad stroke is when player 2 hit position is 6 or 3 (front or back)
 Ply2_ad_stroke = pcase{
-      // back player receives stroke (player 3)
-			60: BH_Crosscourt { ball = 10} -> Ply3_ad_stroke
-			17: BH_Downline { ball = 12} -> Ply3_de_stroke
-			47: BH_DownMid { ball = 11 } -> Ply3_mid_stroke
-			16: FH_InsideOut { ball = 10} -> Ply3_ad_stroke
-			8: FH_InsideIn { ball = 12} -> Ply3_de_stroke
-			3: FH_DownMid { ball = 11} -> Ply3_mid_stroke
+      // back player receives stroke (player 3) (forehand, backhand, lob, volley)
+			60: BH_Crosscourt_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			17: BH_Downline_Back_P3 { ball = 12} -> Ply3_de_stroke
+			47: BH_DownMid_Back_P3 { ball = 11 } -> Ply3_mid_stroke
+			16: FH_InsideOut_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			8: FH_InsideIn_Back_P3 { ball = 12} -> Ply3_de_stroke
+			3: FH_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+			60: Lob_Crosscourt_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			17: Lob_Downline_Back_P3 { ball = 12} -> Ply3_de_stroke
+			47: Lob_DownMid_Back_P3 { ball = 11 } -> Ply3_mid_stroke
+			16: Volley_InsideOut_Back_P3 { ball = 10} -> Ply3_ad_stroke
+			8: Volley_InsideIn_Back_P3 { ball = 12} -> Ply3_de_stroke
+			3: Volley_DownMid_Back_P3 { ball = 11} -> Ply3_mid_stroke
+		
+      // back player receives stroke (player 4) (forehand, backhand, lob, volley)
+			60: BH_Crosscourt_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			17: BH_Downline_Back_P4 { ball = 12} -> Ply4_de_stroke
+			47: BH_DownMid_Back_P4 { ball = 11 } -> Ply4_mid_stroke
+			16: FH_InsideOut_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			8: FH_InsideIn_Back_P4 { ball = 12} -> Ply4_de_stroke
+			3: FH_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
+			60: Lob_Crosscourt_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			17: Lob_Downline_Back_P4 { ball = 12} -> Ply4_de_stroke
+			47: Lob_DownMid_Back_P4 { ball = 11 } -> Ply4_mid_stroke
+			16: Volley_InsideOut_Back_P4 { ball = 10} -> Ply4_ad_stroke
+			8: Volley_InsideIn_Back_P4 { ball = 12} -> Ply4_de_stroke
+			3: Volley_DownMid_Back_P4 { ball = 11} -> Ply4_mid_stroke
 
-      // front player receives stroke (player 4)
-			60: BH_Crosscourt { ball = 7} -> Ply4_ad_stroke
-			17: BH_Downline { ball = 9} -> Ply4_de_stroke
-			47: BH_DownMid { ball = 8 } -> Ply4_mid_stroke
-			16: FH_InsideOut { ball = 7} -> Ply4_ad_stroke
-			8: FH_InsideIn { ball = 9} -> Ply4_de_stroke
-			4: FH_DownMid { ball = 8} -> Ply4_mid_stroke
+      // front player receives stroke (player 4) (forehand, backhand, dropshot, volley)
+			60: BH_Crosscourt_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			17: BH_Downline_Front_P4 { ball = 9} -> Ply4_de_stroke
+			47: BH_DownMid_Front_P4 { ball = 8 } -> Ply4_mid_stroke
+			16: FH_InsideOut_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			8: FH_InsideIn_Front_P4 { ball = 9} -> Ply4_de_stroke
+			4: FH_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+			60: DS_Crosscourt_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			17: DS_Downline_Front_P4 { ball = 9} -> Ply4_de_stroke
+			47: DS_DownMid_Front_P4 { ball = 8 } -> Ply4_mid_stroke
+			16: Volley_InsideOut_Front_P4 { ball = 7} -> Ply4_ad_stroke
+			8: Volley_InsideIn_Front_P4 { ball = 9} -> Ply4_de_stroke
+			4: Volley_DownMid_Front_P4 { ball = 8} -> Ply4_mid_stroke
+
+      // front player receives stroke (player 3) (forehand, backhand, dropshot, volley)
+			60: BH_Crosscourt_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			17: BH_Downline_Front_P3 { ball = 9} -> Ply3_de_stroke
+			47: BH_DownMid_Front_P3 { ball = 8 } -> Ply3_mid_stroke
+			16: FH_InsideOut_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			8: FH_InsideIn_Front_P3 { ball = 9} -> Ply3_de_stroke
+			4: FH_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
+			60: DS_Crosscourt_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			17: DS_Downline_Front_P3 { ball = 9} -> Ply3_de_stroke
+			47: DS_DownMid_Front_P3 { ball = 8 } -> Ply3_mid_stroke
+			16: Volley_InsideOut_Front_P3 { ball = 7} -> Ply3_ad_stroke
+			8: Volley_InsideIn_Front_P3 { ball = 9} -> Ply3_de_stroke
+			4: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
 
 			33: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt 	
@@ -451,16 +931,16 @@ Ply2_ad_stroke = pcase{
 Ply1_BackHandR = ifa (turn == b_de_ct) {    // Player 1 backhand return from Player 3's serve from the deuce court side
 		 pcase {
       // back player receives the stroke (player 3)
-			5: BH_CrossCourt_DE {ball = 10} -> Ply3_ad_stroke
-			1: BH_InsideIn {ball = 10} -> Ply3_ad_stroke
-			12: BH_InsideOut { ball = 12} -> Ply3_de_stroke
-			18: BH_DownMid_DE { ball = 11} -> Ply3_mid_stroke
+			5: BH_CrossCourt_DE_Back {ball = 10} -> Ply3_ad_stroke
+			1: BH_InsideIn_Back {ball = 10} -> Ply3_ad_stroke
+			12: BH_InsideOut_Back { ball = 12} -> Ply3_de_stroke
+			18: BH_DownMid_DE_Back { ball = 11} -> Ply3_mid_stroke
 
       // front player receives the stroke (player 4)
-			5: BH_CrossCourt_DE {ball = 7} -> Ply4_ad_stroke
-			1: BH_InsideIn {ball = 7} -> Ply4_ad_stroke
-			12: BH_InsideOut { ball = 9} -> Ply4_de_stroke
-			18: BH_DownMid_DE { ball = 8} -> Ply4_mid_stroke
+			5: BH_CrossCourt_DE_Front {ball = 7} -> Ply4_ad_stroke
+			1: BH_InsideIn_Front {ball = 7} -> Ply4_ad_stroke
+			12: BH_InsideOut_Front { ball = 9} -> Ply4_de_stroke
+			18: BH_DownMid_DE_Front { ball = 8} -> Ply4_mid_stroke
 
 			4: BH_Error_DE { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -469,14 +949,14 @@ Ply1_BackHandR = ifa (turn == b_de_ct) {    // Player 1 backhand return from Pla
       		 else {
       		pcase {
       // back player receives the stroke (player 4)
-			14: BH_CrossCourt_AD { ball = 10} -> Ply4_ad_stroke
-			7: BH_DownLine { ball = 12} -> Ply4_de_stroke
-			17: BH_DownMid_AD { ball = 11 } -> Ply4_mid_stroke
+			14: BH_CrossCourt_AD_Back { ball = 10} -> Ply4_ad_stroke
+			7: BH_DownLine_Back { ball = 12} -> Ply4_de_stroke
+			17: BH_DownMid_AD_Back { ball = 11 } -> Ply4_mid_stroke
 
       // front player receives the stroke (player 3)
-			14: BH_CrossCourt_AD { ball = 7} -> Ply3_ad_stroke
-			7: BH_DownLine { ball = 9} -> Ply3_de_stroke
-			17: BH_DownMid_AD { ball = 8 } -> Ply3_mid_stroke
+			14: BH_CrossCourt_AD_Front { ball = 7} -> Ply3_ad_stroke
+			7: BH_DownLine_Front { ball = 9} -> Ply3_de_stroke
+			17: BH_DownMid_AD_Front { ball = 8 } -> Ply3_mid_stroke
 
 			14: BH_Error_AD{ball=13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -485,14 +965,14 @@ Ply1_BackHandR = ifa (turn == b_de_ct) {    // Player 1 backhand return from Pla
 Ply1_ForeHandR = ifa (turn == b_de_ct) {    // Player 1 forehand return from Player 3's serve from the deuce court side
 		 pcase {
       // back player receives the stroke (player 3)
-			11: FH_CrossCourt_DE { ball = 12;} -> Ply3_de_stroke
-			1: FH_DownLine { ball = 10} -> Ply3_ad_stroke
-			12: FH_DownMid_DE { ball = 11} -> Ply3_mid_stroke
+			11: FH_CrossCourt_DE_Back { ball = 12;} -> Ply3_de_stroke
+			1: FH_DownLine_Back { ball = 10} -> Ply3_ad_stroke
+			12: FH_DownMid_DE_Back { ball = 11} -> Ply3_mid_stroke
 
       // front player receives the stroke (player 4)
-			11: FH_CrossCourt_DE { ball = 9;} -> Ply4_de_stroke
-			1: FH_DownLine { ball = 7} -> Ply4_ad_stroke
-			12: FH_DownMid_DE { ball = 8} -> Ply4_mid_stroke
+			11: FH_CrossCourt_DE_Front { ball = 9;} -> Ply4_de_stroke
+			1: FH_DownLine_Front { ball = 7} -> Ply4_ad_stroke
+			12: FH_DownMid_DE_Front { ball = 8} -> Ply4_mid_stroke
 
 			11: FH_Error_DE { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -501,16 +981,16 @@ Ply1_ForeHandR = ifa (turn == b_de_ct) {    // Player 1 forehand return from Pla
       		 else {
       		pcase {
       // back player receives the stroke (player 4)
-			0: FH_InsideOut { ball = 10} -> Ply4_ad_stroke
-			2: FH_CrossCourt_AD {ball = 12} -> Ply4_de_stroke
-			2: FH_InsideIn { ball = 12} -> Ply4_de_stroke
-			12: FH_DownMid_AD { ball = 11} -> Ply4_mid_stroke
+			0: FH_InsideOut_Back { ball = 10} -> Ply4_ad_stroke
+			2: FH_CrossCourt_AD_Back {ball = 12} -> Ply4_de_stroke
+			2: FH_InsideIn_Back { ball = 12} -> Ply4_de_stroke
+			12: FH_DownMid_AD_Back { ball = 11} -> Ply4_mid_stroke
 
       // front player receives the stroke (player 3)
-			0: FH_InsideOut { ball = 7} -> Ply3_ad_stroke
-			2: FH_CrossCourt_AD {ball = 9} -> Ply3_de_stroke
-			2: FH_InsideIn { ball = 9} -> Ply3_de_stroke
-			12: FH_DownMid_AD { ball = 8} -> Ply3_mid_stroke
+			0: FH_InsideOut_Front { ball = 7} -> Ply3_ad_stroke
+			2: FH_CrossCourt_AD_Front {ball = 9} -> Ply3_de_stroke
+			2: FH_InsideIn_Front { ball = 9} -> Ply3_de_stroke
+			12: FH_DownMid_AD_Front { ball = 8} -> Ply3_mid_stroke
 
 			5: FH_Error_AD { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -519,16 +999,16 @@ Ply1_ForeHandR = ifa (turn == b_de_ct) {    // Player 1 forehand return from Pla
 Ply2_BackHandR = ifa (turn == j_de_ct) {    // Player 2 backhand return from Player 4's serve from the deuce court side
 		 pcase {
       // back player receives the stroke (player 4)
-			5: BH_CrossCourt_DE {ball = 10} -> Ply4_ad_stroke
-			1: BH_InsideIn {ball = 10} -> Ply4_ad_stroke
-			12: BH_InsideOut { ball = 12} -> Ply4_de_stroke
-			18: BH_DownMid_DE { ball = 11} -> Ply4_mid_stroke
+			5: BH_CrossCourt_DE_Back {ball = 10} -> Ply4_ad_stroke
+			1: BH_InsideIn_Back {ball = 10} -> Ply4_ad_stroke
+			12: BH_InsideOut_Back { ball = 12} -> Ply4_de_stroke
+			18: BH_DownMid_DE_Back { ball = 11} -> Ply4_mid_stroke
 
       // front player receives the stroke (player 3)
-			5: BH_CrossCourt_DE {ball = 7} -> Ply3_ad_stroke
-			1: BH_InsideIn {ball = 7} -> Ply3_ad_stroke
-			12: BH_InsideOut { ball = 9} -> Ply3_de_stroke
-			18: BH_DownMid_DE { ball = 8} -> Ply3_mid_stroke
+			5: BH_CrossCourt_DE_Front {ball = 7} -> Ply3_ad_stroke
+			1: BH_InsideIn_Front {ball = 7} -> Ply3_ad_stroke
+			12: BH_InsideOut_Front { ball = 9} -> Ply3_de_stroke
+			18: BH_DownMid_DE_Front { ball = 8} -> Ply3_mid_stroke
 
 			4: BH_Error_DE { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -537,14 +1017,14 @@ Ply2_BackHandR = ifa (turn == j_de_ct) {    // Player 2 backhand return from Pla
       		 else {
       		pcase {
       // back player receives the stroke (player 3)
-			14: BH_CrossCourt_AD { ball = 10} -> Ply3_ad_stroke
-			7: BH_DownLine { ball = 12} -> Ply3_de_stroke
-			17: BH_DownMid_AD { ball = 11 } -> Ply3_mid_stroke
+			14: BH_CrossCourt_AD_Back { ball = 10} -> Ply3_ad_stroke
+			7: BH_DownLine_Back { ball = 12} -> Ply3_de_stroke
+			17: BH_DownMid_AD_Back { ball = 11 } -> Ply3_mid_stroke
 
       // front player receives the stroke (player 4)
-			14: BH_CrossCourt_AD { ball = 7} -> Ply4_ad_stroke
-			7: BH_DownLine { ball = 9} -> Ply4_de_stroke
-			17: BH_DownMid_AD { ball = 8 } -> Ply4_mid_stroke
+			14: BH_CrossCourt_AD_Front { ball = 7} -> Ply4_ad_stroke
+			7: BH_DownLine_Front { ball = 9} -> Ply4_de_stroke
+			17: BH_DownMid_AD_Front { ball = 8 } -> Ply4_mid_stroke
 
 			14: BH_Error_AD{ball=13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -553,14 +1033,14 @@ Ply2_BackHandR = ifa (turn == j_de_ct) {    // Player 2 backhand return from Pla
 Ply2_ForeHandR = ifa (turn == j_de_ct) {    // Player 2 forehand return from Player 4's serve from the deuce court side
 		 pcase {
       // back player receives the stroke (player 4)
-			11: FH_CrossCourt_DE { ball = 12;} -> Ply4_de_stroke
-			1: FH_DownLine { ball = 10} -> Ply4_ad_stroke
-			12: FH_DownMid_DE { ball = 11} -> Ply4_mid_stroke
+			11: FH_CrossCourt_DE_Back { ball = 12;} -> Ply4_de_stroke
+			1: FH_DownLine_Back { ball = 10} -> Ply4_ad_stroke
+			12: FH_DownMid_DE_Back { ball = 11} -> Ply4_mid_stroke
 
       // front player receives the stroke (player 3)
-			11: FH_CrossCourt_DE { ball = 9;} -> Ply3_de_stroke
-			1: FH_DownLine { ball = 7} -> Ply3_ad_stroke
-			12: FH_DownMid_DE { ball = 8} -> Ply3_mid_stroke
+			11: FH_CrossCourt_DE_Front { ball = 9;} -> Ply3_de_stroke
+			1: FH_DownLine_Front { ball = 7} -> Ply3_ad_stroke
+			12: FH_DownMid_DE_Front { ball = 8} -> Ply3_mid_stroke
 
 			11: FH_Error_DE { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -569,16 +1049,16 @@ Ply2_ForeHandR = ifa (turn == j_de_ct) {    // Player 2 forehand return from Pla
       		 else {
       		pcase {
       // back player receives the stroke (player 3)
-			0: FH_InsideOut { ball = 10} -> Ply3_ad_stroke
-			2: FH_CrossCourt_AD {ball = 12} -> Ply3_de_stroke
-			2: FH_InsideIn { ball = 12} -> Ply3_de_stroke
-			12: FH_DownMid_AD { ball = 11} -> Ply3_mid_stroke
+			0: FH_InsideOut_Back { ball = 10} -> Ply3_ad_stroke
+			2: FH_CrossCourt_AD_Back {ball = 12} -> Ply3_de_stroke
+			2: FH_InsideIn_Back { ball = 12} -> Ply3_de_stroke
+			12: FH_DownMid_AD_Back { ball = 11} -> Ply3_mid_stroke
 
       // front player receives the stroke (player 4)
-			0: FH_InsideOut { ball = 7} -> Ply4_ad_stroke
-			2: FH_CrossCourt_AD {ball = 9} -> Ply4_de_stroke
-			2: FH_InsideIn { ball = 9} -> Ply4_de_stroke
-			12: FH_DownMid_AD { ball = 8} -> Ply4_mid_stroke
+			0: FH_InsideOut_Front { ball = 7} -> Ply4_ad_stroke
+			2: FH_CrossCourt_AD_Front {ball = 9} -> Ply4_de_stroke
+			2: FH_InsideIn_Front { ball = 9} -> Ply4_de_stroke
+			12: FH_DownMid_AD_Front { ball = 8} -> Ply4_mid_stroke
 
 			5: FH_Error_AD { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -587,14 +1067,14 @@ Ply2_ForeHandR = ifa (turn == j_de_ct) {    // Player 2 forehand return from Pla
 Ply3_BackHandR = ifa (turn == f_de_ct) {    // Player 3 backhand return from Player 1's serve from the deuce court side
 		  pcase {
       // back player receives stroke (player 1)
-			8: BH_CrossCourt_DE {ball = 1} -> Ply1_de_stroke
-			3: BH_DownLine { ball = 3} -> Ply1_ad_stroke
-			15: BH_DownMid_DE { ball = 2} -> Ply1_mid_stroke
+			8: BH_CrossCourt_DE_Back {ball = 1} -> Ply1_de_stroke
+			3: BH_DownLine_Back { ball = 3} -> Ply1_ad_stroke
+			15: BH_DownMid_DE_Back { ball = 2} -> Ply1_mid_stroke
 
       // front player receives stroke (player 2)
-			8: BH_CrossCourt_DE {ball = 4} -> Ply2_de_stroke
-			3: BH_DownLine { ball = 6} -> Ply2_ad_stroke
-			15: BH_DownMid_DE { ball = 5} -> Ply2_mid_stroke
+			8: BH_CrossCourt_DE_Front {ball = 4} -> Ply2_de_stroke
+			3: BH_DownLine_Front { ball = 6} -> Ply2_ad_stroke
+			15: BH_DownMid_DE_Front { ball = 5} -> Ply2_mid_stroke
 
 			19: BH_Error_DE { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -603,14 +1083,14 @@ Ply3_BackHandR = ifa (turn == f_de_ct) {    // Player 3 backhand return from Pla
       		 else {
       		pcase {
       // back player receives stroke (player 2)
-			8: BH_CrossCourt_DE {ball = 1} -> Ply2_de_stroke
-			3: BH_DownLine { ball = 3} -> Ply2_ad_stroke
-			15: BH_DownMid_DE { ball = 2} -> Ply2_mid_stroke
+			8: BH_CrossCourt_DE_Back {ball = 1} -> Ply2_de_stroke
+			3: BH_DownLine_Back { ball = 3} -> Ply2_ad_stroke
+			15: BH_DownMid_DE_Back { ball = 2} -> Ply2_mid_stroke
 
       // front player receives stroke (player 1)
-			8: BH_CrossCourt_DE {ball = 4} -> Ply1_de_stroke
-			3: BH_DownLine { ball = 6} -> Ply1_ad_stroke
-			15: BH_DownMid_DE { ball = 5} -> Ply1_mid_stroke
+			8: BH_CrossCourt_DE_Front {ball = 4} -> Ply1_de_stroke
+			3: BH_DownLine_Front { ball = 6} -> Ply1_ad_stroke
+			15: BH_DownMid_DE_Front { ball = 5} -> Ply1_mid_stroke
 
 			19: BH_Error_DE { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -619,16 +1099,16 @@ Ply3_BackHandR = ifa (turn == f_de_ct) {    // Player 3 backhand return from Pla
 Ply3_ForeHandR = ifa (turn == f_de_ct) {    // Player 3 forehand return from Player 1's serve from the deuce court side
 			pcase {
       // back player receives stroke (player 1)
-			3: FH_InsideOut { ball = 1} -> Ply1_de_stroke
-			3: FH_CrossCourt_DE { ball = 3} -> Ply1_ad_stroke
-			0: FH_InsideIn {ball = 3} -> Ply1_ad_stroke
-			8: FH_DownMid_DE { ball = 2} -> Ply1_mid_stroke
+			3: FH_InsideOut_Back { ball = 1} -> Ply1_de_stroke
+			3: FH_CrossCourt_DE_Back { ball = 3} -> Ply1_ad_stroke
+			0: FH_InsideIn_Back {ball = 3} -> Ply1_ad_stroke
+			8: FH_DownMid_DE_Back { ball = 2} -> Ply1_mid_stroke
 
       // front player receives stroke (player 2)
-			3: FH_InsideOut { ball = 4} -> Ply2_de_stroke
-			3: FH_CrossCourt_DE { ball = 6} -> Ply2_ad_stroke
-			0: FH_InsideIn {ball = 6} -> Ply2_ad_stroke
-			8: FH_DownMid_DE { ball = 5} -> Ply2_mid_stroke
+			3: FH_InsideOut_Front { ball = 4} -> Ply2_de_stroke
+			3: FH_CrossCourt_DE_Front { ball = 6} -> Ply2_ad_stroke
+			0: FH_InsideIn_Front {ball = 6} -> Ply2_ad_stroke
+			8: FH_DownMid_DE_Front { ball = 5} -> Ply2_mid_stroke
 
 			10: FH_Error_DE { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -637,16 +1117,16 @@ Ply3_ForeHandR = ifa (turn == f_de_ct) {    // Player 3 forehand return from Pla
       		 else {
       		pcase {
       // back player receives stroke (player 2)
-			3: FH_InsideOut { ball = 1} -> Ply2_de_stroke
-			3: FH_CrossCourt_DE { ball = 3} -> Ply2_ad_stroke
-			0: FH_InsideIn {ball = 3} -> Ply2_ad_stroke
-			8: FH_DownMid_DE { ball = 2} -> Ply2_mid_stroke
+			3: FH_InsideOut_Back { ball = 1} -> Ply2_de_stroke
+			3: FH_CrossCourt_DE_Back { ball = 3} -> Ply2_ad_stroke
+			0: FH_InsideIn_Back {ball = 3} -> Ply2_ad_stroke
+			8: FH_DownMid_DE_Back { ball = 2} -> Ply2_mid_stroke
 
       // front player receives stroke (player 1)
-			3: FH_InsideOut { ball = 4} -> Ply1_de_stroke
-			3: FH_CrossCourt_DE { ball = 6} -> Ply1_ad_stroke
-			0: FH_InsideIn {ball = 6} -> Ply1_ad_stroke
-			8: FH_DownMid_DE { ball = 5} -> Ply1_mid_stroke     
+			3: FH_InsideOut_Front { ball = 4} -> Ply1_de_stroke
+			3: FH_CrossCourt_DE_Front { ball = 6} -> Ply1_ad_stroke
+			0: FH_InsideIn_Front {ball = 6} -> Ply1_ad_stroke
+			8: FH_DownMid_DE_Front { ball = 5} -> Ply1_mid_stroke     
 
 			10: FH_Error_DE { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -655,16 +1135,16 @@ Ply3_ForeHandR = ifa (turn == f_de_ct) {    // Player 3 forehand return from Pla
 Ply4_BackHandR = ifa (turn == f_ad_ct) {    // Player 4 backhand return from Player 1's serve from the ad court side
 		  pcase {
       // back player receives the stroke (player 1)
-			0: BH_InsideIn {ball = 1} -> Ply1_de_stroke
-			3: BH_CrossCourt_AD {ball = 1} -> Ply1_de_stroke
-			4: BH_InsideOut { ball = 3} -> Ply1_ad_stroke
-			13: BH_DownMid_AD { ball = 2} -> Ply1_mid_stroke
+			0: BH_InsideIn_Back {ball = 1} -> Ply1_de_stroke
+			3: BH_CrossCourt_AD_Back {ball = 1} -> Ply1_de_stroke
+			4: BH_InsideOut_Back { ball = 3} -> Ply1_ad_stroke
+			13: BH_DownMid_AD_Back { ball = 2} -> Ply1_mid_stroke
 
       // front player receives the stroke (player 2)
-			0: BH_InsideIn {ball = 4} -> Ply2_de_stroke
-			3: BH_CrossCourt_AD {ball = 4} -> Ply2_de_stroke
-			4: BH_InsideOut { ball = 6} -> Ply2_ad_stroke
-			13: BH_DownMid_AD { ball = 5} -> Ply2_mid_stroke
+			0: BH_InsideIn_Front {ball = 4} -> Ply2_de_stroke
+			3: BH_CrossCourt_AD_Front {ball = 4} -> Ply2_de_stroke
+			4: BH_InsideOut_Front { ball = 6} -> Ply2_ad_stroke
+			13: BH_DownMid_AD_Front { ball = 5} -> Ply2_mid_stroke
 
 			14: BH_Error_AD{ball=13} -> {nscore++; if (nscore == 7) {won = team1}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -673,16 +1153,16 @@ Ply4_BackHandR = ifa (turn == f_ad_ct) {    // Player 4 backhand return from Pla
       		 else {
       		pcase {
       // back player receives the stroke (player 2)
-			0: BH_InsideIn {ball = 1} -> Ply2_de_stroke
-			3: BH_CrossCourt_AD {ball = 1} -> Ply2_de_stroke
-			4: BH_InsideOut { ball = 3} -> Ply2_ad_stroke
-			13: BH_DownMid_AD { ball = 2} -> Ply2_mid_stroke
+			0: BH_InsideIn_Back {ball = 1} -> Ply2_de_stroke
+			3: BH_CrossCourt_AD_Back {ball = 1} -> Ply2_de_stroke
+			4: BH_InsideOut_Back { ball = 3} -> Ply2_ad_stroke
+			13: BH_DownMid_AD_Back { ball = 2} -> Ply2_mid_stroke
 
       // front player receives the stroke (player 1)
-			0: BH_InsideIn {ball = 4} -> Ply1_de_stroke
-			3: BH_CrossCourt_AD {ball = 4} -> Ply1_de_stroke
-			4: BH_InsideOut { ball = 6} -> Ply1_ad_stroke
-			13: BH_DownMid_AD { ball = 5} -> Ply1_mid_stroke
+			0: BH_InsideIn_Front {ball = 4} -> Ply1_de_stroke
+			3: BH_CrossCourt_AD_Front {ball = 4} -> Ply1_de_stroke
+			4: BH_InsideOut_Front { ball = 6} -> Ply1_ad_stroke
+			13: BH_DownMid_AD_Front { ball = 5} -> Ply1_mid_stroke
 
 			14: BH_Error_AD{ball=13} -> {nscore++; if (nscore == 7) {won = team1}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -691,14 +1171,14 @@ Ply4_BackHandR = ifa (turn == f_ad_ct) {    // Player 4 backhand return from Pla
 Ply4_ForeHandR = ifa (turn == f_ad_ct) {    // Player 4 forehand return from Player 1's serve from the ad court side
 			pcase {
       // back player receives the stroke (player 1)
-			17: FH_CrossCourt_AD { ball = 3} -> Ply1_ad_stroke
-			3: FH_DownLine { ball = 1} -> Ply1_de_stroke
-			10: FH_DownMid_AD { ball = 2} -> Ply1_mid_stroke
+			17: FH_CrossCourt_AD_Back { ball = 3} -> Ply1_ad_stroke
+			3: FH_DownLine_Back { ball = 1} -> Ply1_de_stroke
+			10: FH_DownMid_AD_Back { ball = 2} -> Ply1_mid_stroke
 
       // front player receives the stroke (player 2)
-			17: FH_CrossCourt_AD { ball = 6} -> Ply2_ad_stroke
-			3: FH_DownLine { ball = 4} -> Ply2_de_stroke
-			10: FH_DownMid_AD { ball = 5} -> Ply2_mid_stroke
+			17: FH_CrossCourt_AD_Front { ball = 6} -> Ply2_ad_stroke
+			3: FH_DownLine_Front { ball = 4} -> Ply2_de_stroke
+			10: FH_DownMid_AD_Front { ball = 5} -> Ply2_mid_stroke
 
 			5: FH_Error_AD { ball = 13} -> {nscore++; if (nscore == 7) {won = team1}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
@@ -707,14 +1187,14 @@ Ply4_ForeHandR = ifa (turn == f_ad_ct) {    // Player 4 forehand return from Pla
       		 else {
       		pcase {
       // back player receives stroke (player 2)
-			17: FH_CrossCourt_AD { ball = 6} -> Ply2_ad_stroke
-			3: FH_DownLine { ball = 4} -> Ply2_de_stroke
-			10: FH_DownMid_AD { ball = 5} -> Ply2_mid_stroke
+			17: FH_CrossCourt_AD_Back { ball = 6} -> Ply2_ad_stroke
+			3: FH_DownLine_Back { ball = 4} -> Ply2_de_stroke
+			10: FH_DownMid_AD_Back { ball = 5} -> Ply2_mid_stroke
 
       // front player receives stroke (player 1)
-			17: FH_CrossCourt_AD { ball = 3} -> Ply1_ad_stroke
-			3: FH_DownLine { ball = 1} -> Ply1_de_stroke
-			10: FH_DownMid_AD { ball = 2} -> Ply1_mid_stroke  
+			17: FH_CrossCourt_AD_Front { ball = 3} -> Ply1_ad_stroke
+			3: FH_DownLine_Front { ball = 1} -> Ply1_de_stroke
+			10: FH_DownMid_AD_Front { ball = 2} -> Ply1_mid_stroke  
 
 			10: FH_Error_DE { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
