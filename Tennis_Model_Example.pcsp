@@ -27,8 +27,8 @@ enum{n_ad_ct, n_de_ct, q_ad_ct, q_de_ct, f_ad_ct, f_de_ct, s_ad_ct, s_de_ct}; //
 enum{player1, player2, player3, player4, team1, team2, na};
 
 var turn = na; //serve turn;
-var fscore = 0;
-var nscore = 0;
+var score1 = 0;
+var score2 = 0;
 var won = na;
 var ball = 13;
 
@@ -57,7 +57,7 @@ De_Ply1Serve_2nd = pcase {                 //1st serve is out
       2: ServeT_in{ball= 11} -> Ply3_ForeHandR  
 			1: ServeWide_in{ball =12} -> Ply3_BackHandR 
 			1: ServeBody_in{ball=12} -> (Ply3_BackHandR [] Ply3_ForeHandR)
-			3: Serve_err{ball=13} -> Fdoublefault{nscore++; if (nscore == 7) {won = team2} 
+			3: Serve_err{ball=13} -> Fdoublefault{score2++; if (score2 == 7) {won = team2} 
       		                                                        else { turn = (turn+1)%8} }-> NextPt
      		 };
 
@@ -73,7 +73,7 @@ Ad_Ply1Serve_2nd = pcase {                 //1st serve is out
       1: ServeT_in{ball= 11} -> Ply4_BackHandR  
 			2: ServeWide_in{ball =10} -> Ply4_ForeHandR
 			1: ServeBody_in{ball=10} -> (Ply4_BackHandR [] Ply4_ForeHandR)
-			3: Serve_err{ball=13} -> Fdoublefault{nscore++; if (nscore == 7) {won = team2} 
+			3: Serve_err{ball=13} -> Fdoublefault{score2++; if (score2 == 7) {won = team2} 
       		                                                        else { turn = (turn+1)%8} }-> NextPt
      		 };
 
@@ -89,7 +89,7 @@ De_Ply2Serve_2nd = pcase {                 //1st serve is out
       1: ServeT_in{ball= 11} -> Ply3_ForeHandR  
 			1: ServeWide_in{ball =12} -> Ply3_BackHandR 
 			1: ServeBody_in{ball=12} -> (Ply3_BackHandR [] Ply3_ForeHandR)
-			3: Serve_err{ball=13} -> Ndoublefault{nscore++; if (nscore == 7) {won = team2} 
+			3: Serve_err{ball=13} -> Ndoublefault{score2++; if (score2 == 7) {won = team2} 
       		                                                        else { turn = (turn+1)%8} }-> NextPt
      		 };
 
@@ -105,7 +105,7 @@ Ad_Ply2Serve_2nd = pcase {                 //1st serve is out
       2: ServeT_in{ball= 11} -> Ply4_BackHandR  
 			2: ServeWide_in{ball =10} -> Ply4_ForeHandR
 			2: ServeBody_in{ball=10} -> (Ply4_BackHandR [] Ply4_ForeHandR)
-			2: Serve_err{ball=13} -> Ndoublefault{nscore++; if (nscore == 7) {won = team2} 
+			2: Serve_err{ball=13} -> Ndoublefault{score2++; if (score2 == 7) {won = team2} 
       		                                                        else { turn = (turn+1)%8} }-> NextPt
      		 };        
 
@@ -169,7 +169,7 @@ Ply3_de_stroke = pcase { // if already
 			0: Volley_InsideOut_Front_P1 { ball = 4} -> Ply1_de_stroke
 			1: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 
-			4: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
+			4: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt      		                                                            
 	};
 
@@ -231,7 +231,7 @@ Ply3_mid_stroke = noMove -> pcase{
 			1: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 			0: Volley_Crosscourt_Front_P1 { ball = 4} -> Ply1_de_stroke
 
-			3: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
+			3: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt   
 	};
 	
@@ -294,7 +294,7 @@ Ply3_ad_stroke = pcase{
 			0: Volley_InsideIn_Front_P1 { ball = 4} -> Ply1_de_stroke
 			1: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 
-			3: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
+			3: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt   	
 	};
 
@@ -356,7 +356,7 @@ Ply4_de_stroke = pcase { // if already
 			0: Volley_InsideOut_Front_P1 { ball = 4} -> Ply1_de_stroke
 			1: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 
-			4: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
+			4: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt      		                                                            
 	};
 
@@ -418,7 +418,7 @@ Ply4_mid_stroke = noMove -> pcase{
 			0: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 			0: Volley_Crosscourt_Front_P1 { ball = 4} -> Ply1_de_stroke
 
-			3: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
+			3: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt   
 	};
 	
@@ -481,7 +481,7 @@ Ply4_ad_stroke = pcase{
 			0: Volley_InsideIn_Front_P1 { ball = 4} -> Ply1_de_stroke
 			0: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 
-			3: Error { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
+			3: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt   	
 	};   		                                                            
 
@@ -505,7 +505,7 @@ De_Ply3Serve_2nd = pcase {                 //1st serve is out
       2: ServeT_in{ball= 2} -> Ply1_BackHandR
 			1: ServeWide_in{ball =1} -> Ply1_ForeHandR
 			2: ServeBody_in{ball=1} -> (Ply1_ForeHandR [] Ply1_BackHandR)
-			2: Serve_err{ball=13} -> Bdoublefault{fscore++; if (fscore == 7) {won = team1} 
+			2: Serve_err{ball=13} -> Bdoublefault{score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
      		 };
 
@@ -521,7 +521,7 @@ Ad_Ply3Serve_2nd = pcase {                 //1st serve is out
       1: ServeT_in{ball= 2} -> Ply2_BackHandR
 			1: ServeWide_in{ball =3} -> Ply2_BackHandR
 			2: ServeBody_in{ball=3} -> (Ply2_ForeHandR [] Ply2_BackHandR)
-			2: Serve_err{ball=13} -> Bdoublefault{fscore++; if (fscore == 7) {won = team1} 
+			2: Serve_err{ball=13} -> Bdoublefault{score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
      		 };
 
@@ -537,7 +537,7 @@ De_Ply4Serve_2nd = pcase {                 //1st serve is out
       1: ServeT_in{ball= 2} -> Ply2_BackHandR
 			2: ServeWide_in{ball =1} -> Ply2_ForeHandR
 			1: ServeBody_in{ball=1} -> (Ply2_ForeHandR [] Ply2_BackHandR)
-			2 : Serve_err{ball=13} -> Jdoublefault{fscore++; if (fscore == 7) {won = team1} 
+			2 : Serve_err{ball=13} -> Jdoublefault{score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
      		 };
 
@@ -553,7 +553,7 @@ Ad_Ply4Serve_2nd = pcase {                 //1st serve is out
       1: ServeT_in{ball= 2} -> Ply1_BackHandR
 			2: ServeWide_in{ball =3} -> Ply1_BackHandR
 			1: ServeBody_in{ball=3} -> (Ply1_ForeHandR [] Ply1_BackHandR)
-			3: Serve_err{ball=13} -> Jdoublefault{fscore++; if (fscore == 7) {won = team1} 
+			3: Serve_err{ball=13} -> Jdoublefault{score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
      		 };
  	     
@@ -615,7 +615,7 @@ Ply1_de_stroke = pcase{
 			0: Volley_InsideOut_Front_P3 { ball = 9} -> Ply3_de_stroke
 			0: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
 
-			3: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			3: Error { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt      		                                                            
 	};
 
@@ -677,7 +677,7 @@ Ply1_mid_stroke = pcase{
 			1: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
 			0: Volley_Crosscourt_Front_P3 { ball = 7} -> Ply3_ad_stroke
 
-			2: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			2: Error { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt   
 	};
 
@@ -739,7 +739,7 @@ Ply1_ad_stroke = pcase{
 			0: Volley_InsideIn_Front_P3 { ball = 9} -> Ply3_de_stroke
 			0: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
 
-			3: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			3: Error { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt 	
 };
 
@@ -801,7 +801,7 @@ Ply2_de_stroke = pcase{
 			0: Volley_InsideOut_Front_P3 { ball = 9} -> Ply3_de_stroke
 			0: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
 
-			4: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			4: Error { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt      		                                                            
 	};
 
@@ -863,7 +863,7 @@ Ply2_mid_stroke = pcase{
 			0: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
 			0: Volley_Crosscourt_Front_P3 { ball = 7} -> Ply3_ad_stroke
 
-			3: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			3: Error { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt   
 	};
 
@@ -925,7 +925,7 @@ Ply2_ad_stroke = pcase{
 			0: Volley_InsideIn_Front_P3 { ball = 9} -> Ply3_de_stroke
 			0: Volley_DownMid_Front_P3 { ball = 8} -> Ply3_mid_stroke
 
-			3: Error { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			3: Error { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt 	
 };
       		 
@@ -943,7 +943,7 @@ Ply1_BackHandR = ifa (turn == q_de_ct) {    // Player 1 backhand return from Pla
 			0: BH_InsideOut_Front { ball = 9} -> Ply4_de_stroke
 			1: BH_DownMid_DE_Front { ball = 8} -> Ply4_mid_stroke
 
-			3: BH_Error_DE { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			3: BH_Error_DE { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }}
            // Player 1 backhand return from Player 4's serve from the ad court side
@@ -959,7 +959,7 @@ Ply1_BackHandR = ifa (turn == q_de_ct) {    // Player 1 backhand return from Pla
 			0: BH_DownLine_Front { ball = 9} -> Ply3_de_stroke
 			1: BH_DownMid_AD_Front { ball = 8 } -> Ply3_mid_stroke
 
-			3: BH_Error_AD{ball=13} -> {nscore++; if (nscore == 7) {won = team2}
+			3: BH_Error_AD{ball=13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }};
 
@@ -975,7 +975,7 @@ Ply1_ForeHandR = ifa (turn == q_de_ct) {    // Player 1 forehand return from Pla
 			0: FH_DownLine_Front { ball = 7} -> Ply4_ad_stroke
 			1: FH_DownMid_DE_Front { ball = 8} -> Ply4_mid_stroke
 
-			2: FH_Error_DE { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			2: FH_Error_DE { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }}
            // Player 1 forehand return from Player 4's serve from the ad court side
@@ -993,7 +993,7 @@ Ply1_ForeHandR = ifa (turn == q_de_ct) {    // Player 1 forehand return from Pla
 			1: FH_InsideIn_Front { ball = 9} -> Ply3_de_stroke
 			0: FH_DownMid_AD_Front { ball = 8} -> Ply3_mid_stroke
 
-			1: FH_Error_AD { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			1: FH_Error_AD { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }};
 
@@ -1011,7 +1011,7 @@ Ply2_BackHandR = ifa (turn == s_de_ct) {    // Player 2 backhand return from Pla
 			1: BH_InsideOut_Front { ball = 9} -> Ply3_de_stroke
 			0: BH_DownMid_DE_Front { ball = 8} -> Ply3_mid_stroke
 
-			3: BH_Error_DE { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			3: BH_Error_DE { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }}
            // Player 2 backhand return from Player 3's serve from the ad court side
@@ -1027,7 +1027,7 @@ Ply2_BackHandR = ifa (turn == s_de_ct) {    // Player 2 backhand return from Pla
 			0: BH_DownLine_Front { ball = 9} -> Ply4_de_stroke
 			1: BH_DownMid_AD_Front { ball = 8 } -> Ply4_mid_stroke
 
-			2: BH_Error_AD{ball=13} -> {nscore++; if (nscore == 7) {won = team2}
+			2: BH_Error_AD{ball=13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }};
 
@@ -1043,7 +1043,7 @@ Ply2_ForeHandR = ifa (turn == s_de_ct) {    // Player 2 forehand return from Pla
 			0: FH_DownLine_Front { ball = 7} -> Ply3_ad_stroke
 			1: FH_DownMid_DE_Front { ball = 8} -> Ply3_mid_stroke
 
-			1: FH_Error_DE { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			1: FH_Error_DE { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }}
            // Player 2 forehand return from Player 3's serve from the ad court side
@@ -1061,7 +1061,7 @@ Ply2_ForeHandR = ifa (turn == s_de_ct) {    // Player 2 forehand return from Pla
 			1: FH_InsideIn_Front { ball = 9} -> Ply4_de_stroke
 			1: FH_DownMid_AD_Front { ball = 8} -> Ply4_mid_stroke
 
-			1: FH_Error_AD { ball = 13} -> {nscore++; if (nscore == 7) {won = team2}
+			1: FH_Error_AD { ball = 13} -> {score2++; if (score2 == 7) {won = team2}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }};
 
@@ -1077,7 +1077,7 @@ Ply3_BackHandR = ifa (turn == f_de_ct) {    // Player 3 backhand return from Pla
 			0: BH_DownLine_Front { ball = 6} -> Ply2_ad_stroke
 			2: BH_DownMid_DE_Front { ball = 5} -> Ply2_mid_stroke
 
-			1: BH_Error_DE { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
+			1: BH_Error_DE { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }}
            // Player 3 backhand return from Player 2's serve from the deuce court side
@@ -1093,7 +1093,7 @@ Ply3_BackHandR = ifa (turn == f_de_ct) {    // Player 3 backhand return from Pla
 			0: BH_DownLine_Front { ball = 6} -> Ply1_ad_stroke
 			1: BH_DownMid_DE_Front { ball = 5} -> Ply1_mid_stroke
 
-			1: BH_Error_DE { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
+			1: BH_Error_DE { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }};
       		 
@@ -1111,7 +1111,7 @@ Ply3_ForeHandR = ifa (turn == f_de_ct) {    // Player 3 forehand return from Pla
 			1: FH_InsideIn_Front {ball = 6} -> Ply2_ad_stroke
 			1: FH_DownMid_DE_Front { ball = 5} -> Ply2_mid_stroke
 
-			1: FH_Error_DE { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
+			1: FH_Error_DE { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }}
            // Player 3 forehand return from Player 2's serve from the deuce court side
@@ -1129,7 +1129,7 @@ Ply3_ForeHandR = ifa (turn == f_de_ct) {    // Player 3 forehand return from Pla
 			0: FH_InsideIn_Front {ball = 6} -> Ply1_ad_stroke
 			1: FH_DownMid_DE_Front { ball = 5} -> Ply1_mid_stroke     
 
-			1: FH_Error_DE { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
+			1: FH_Error_DE { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }};
 
@@ -1147,7 +1147,7 @@ Ply4_BackHandR = ifa (turn == f_ad_ct) {    // Player 4 backhand return from Pla
 			2: BH_InsideOut_Front { ball = 6} -> Ply2_ad_stroke
 			0: BH_DownMid_AD_Front { ball = 5} -> Ply2_mid_stroke
 
-			1: BH_Error_AD{ball=13} -> {nscore++; if (nscore == 7) {won = team1}
+			1: BH_Error_AD{ball=13} -> {score2++; if (score2 == 7) {won = team1}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }}
            // Player 4 backhand return from Player 2's serve from the ad court side
@@ -1165,7 +1165,7 @@ Ply4_BackHandR = ifa (turn == f_ad_ct) {    // Player 4 backhand return from Pla
 			1: BH_InsideOut_Front { ball = 6} -> Ply1_ad_stroke
 			2: BH_DownMid_AD_Front { ball = 5} -> Ply1_mid_stroke
 
-			1: BH_Error_AD{ball=13} -> {nscore++; if (nscore == 7) {won = team1}
+			1: BH_Error_AD{ball=13} -> {score2++; if (score2 == 7) {won = team1}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }};
       		 
@@ -1182,7 +1182,7 @@ Ply4_ForeHandR = ifa (turn == f_ad_ct) {    // Player 4 forehand return from Pla
 			0: FH_DownLine_Front { ball = 4} -> Ply2_de_stroke
 			0: FH_DownMid_AD_Front { ball = 5} -> Ply2_mid_stroke
 
-			2: FH_Error_AD { ball = 13} -> {nscore++; if (nscore == 7) {won = team1}
+			2: FH_Error_AD { ball = 13} -> {score2++; if (score2 == 7) {won = team1}
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }}
            // Player 4 forehand return from Player 2's serve from the ad court side
@@ -1198,7 +1198,7 @@ Ply4_ForeHandR = ifa (turn == f_ad_ct) {    // Player 4 forehand return from Pla
 			2: FH_DownLine_Front { ball = 1} -> Ply1_de_stroke
 			0: FH_DownMid_AD_Front { ball = 2} -> Ply1_mid_stroke  
 
-			1: FH_Error_DE { ball = 13} -> {fscore++; if (fscore == 7) {won = team1} 
+			1: FH_Error_DE { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt
       		 }};
 
