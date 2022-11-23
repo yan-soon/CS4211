@@ -169,7 +169,7 @@ Ply3_de_stroke = pcase { // if already
 			0: Volley_InsideOut_Front_P1 { ball = 4} -> Ply1_de_stroke
 			1: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 
-			4: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
+			2: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt      		                                                            
 	};
 
@@ -418,7 +418,7 @@ Ply4_mid_stroke = noMove -> pcase{
 			0: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 			0: Volley_Crosscourt_Front_P1 { ball = 4} -> Ply1_de_stroke
 
-			3: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
+			4: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt   
 	};
 	
@@ -481,7 +481,7 @@ Ply4_ad_stroke = pcase{
 			0: Volley_InsideIn_Front_P1 { ball = 4} -> Ply1_de_stroke
 			0: Volley_DownMid_Front_P1 { ball = 5} -> Ply1_mid_stroke
 
-			3: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
+			4: Error { ball = 13} -> {score1++; if (score1 == 7) {won = team1} 
       		                                                     else { turn = (turn+1)%8} }-> NextPt   	
 	};   		                                                            
 
